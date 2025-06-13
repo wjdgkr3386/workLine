@@ -1,0 +1,7 @@
+create table member(                
+    uuid    varchar2(100)   primary key,
+    name    varchar2(20)    not null,
+    mid     varchar2(30)    unique,
+    pwd     varchar2(40)    not null,
+    phone   varchar2(22)    not null     
+);

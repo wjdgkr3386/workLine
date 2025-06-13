@@ -50,15 +50,43 @@
 	}
 </style>
 <script>
-setInterval(function(){location.reload();} , 3 * 1000 );
 $(function(){init();});
-function init(){}
+function init(){
+	//입력 필드 가져오기
+	$("[name='name']").val("김정학");
+	$("[name='mid']").val("wjdgkr3386");
+	$("[name='pwd']").val("kjh3765!");
+	$("[name='pwdCheck']").val("kjh3765!");
+	$("[name='phone1']").val("010");
+	$("[name='phone2']").val("4614");
+	$("[name='phone3']").val("3386");
+}
+
 
 function signup(){
 	//유효성 검사
 	if (!isValid()) {
 	    return;
 	}
+	
+	$("[name='uuid']").val(rCode(20));
+	const formObj = $("[name='infoForm']");
+	ajax(
+	     "/signupProc",
+	     "post",
+	     formObj,
+	     function (cnt) {
+	    	 if(cnt==1){
+	    		 location.replace("/login");
+	    	 }else if(cnt==-1){
+	    		 signup();
+	    	 }else if(cnt==-2){
+	    		 alert("이미 있는 아이디입니다.");
+	    	 }else{
+	    		 alert("오류가 생겼습니다.\n관리자에게 문의주세요.");
+	    	 }
+	     }
+	);
 }
 
 //유효성 검사 메서드
@@ -106,6 +134,7 @@ function isValid() {
     
     if(pwdCheck !== pwd){
     	alert("비밀번호가 일치하지 않습니다.");
+        isValid = false;
     	return isValid;
     }
 	
@@ -125,6 +154,7 @@ function isValid() {
 </script>
 </head>
 <body>
+<form name="infoForm">
 	<div class="signup-container">
 		<input type="text" class="input-field" name="name" placeholder="이름" maxlength="10">
 		<input type="text" class="input-field" name="mid" placeholder="아이디" maxlength="10">
@@ -139,8 +169,10 @@ function isValid() {
 		</div>
 		<div class="btn-div">
 			<button type="button" class="signup-btn btn" onclick="signup()">회원가입</button>
-			<button type="button" class="cancle-btn btn">취소</button>
+			<button type="button" class="cancle-btn btn" onclick="location.replace('/login')">취소</button>
 		</div>
 	</div>
+	<input type="hidden" name="uuid">
+</form>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +20,9 @@ public class WorkLineController {
 
 	@RequestMapping( value="/login")
 	public ModelAndView login(
+		HttpSession session
 	){
+		session.removeAttribute("mid");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName( "login" );
 		return mav;

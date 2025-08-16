@@ -46,7 +46,7 @@
 			     formObj,
 			     function (cnt) {
 			    	 if(cnt == 1){
-			    		 location.replace("workLine.jsp");
+			    		 location.replace("workLine");
 			    	 }else if(cnt == 0){
 			    		 alert("비밀번호가 틀립니다.");
 			    	 }else{
@@ -60,8 +60,8 @@
 <body>
 	<div class="login-container">
 		<form name="loginForm">
-			<input type="text" class="input-field" placeholder="아이디" maxlength="10">
-			<input type="password" class="input-field" placeholder="비밀번호" maxlength="12">
+			<input type="text" class="input-field" name="mid" placeholder="아이디" maxlength="10">
+			<input type="password" class="input-field" name="pwd" placeholder="비밀번호" maxlength="12">
 		</form>
 		<button type="button" class="btn" onclick="login()">로그인</button>
 		<span class="signup-span" onclick="location.href='/signup'">

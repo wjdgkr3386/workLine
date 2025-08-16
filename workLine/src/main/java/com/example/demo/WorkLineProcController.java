@@ -12,14 +12,11 @@ public class WorkLineProcController {
 	WorkLineService workLineService;
 	@Autowired
 	WorkLineDAO workLineDAO;
-	
+
 	@RequestMapping(value="/signupProc")
 	public int signupProc(
 		WorkLineDTO workLineDTO
 	) {
-		System.out.println(workLineDTO.getPhone1());
-		System.out.println(workLineDTO.getPhone2());
-		System.out.println(workLineDTO.getPhone3());
 		int cnt=0;
 		try {
 			cnt = workLineService.insertSignup(workLineDTO);
@@ -29,7 +26,24 @@ public class WorkLineProcController {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println(e);
 		}
-		
+		return cnt;
+	}
+	
+	
+	@RequestMapping(value="/loginProc")
+	public int loginProc(
+		WorkLineDTO workLineDTO
+	) {
+		int cnt=0;
+		try {
+			cnt=workLineDAO.login(workLineDTO);
+		}catch(Exception e) {
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println("WorkLineProcController에서 loginProc를 실행하다가 오류가 생겼습니다.");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println(e);
+			cnt=-1;
+		}
 		return cnt;
 	}
 }

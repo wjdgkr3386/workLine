@@ -39,13 +39,27 @@
 </style>
 <script>
 	function login(){
-		
+		const formObj = $("[name='loginForm']");
+		ajax(
+			     "/loginProc",
+			     "post",
+			     formObj,
+			     function (cnt) {
+			    	 if(cnt == 1){
+			    		 location.replace("workLine.jsp");
+			    	 }else if(cnt == 0){
+			    		 alert("비밀번호가 틀립니다.");
+			    	 }else{
+			    		 alert("실패했습니다. 관리자에게 문의해주세요.");
+			    	 }
+			     }
+			);
 	}
 </script>
 </head>
 <body>
 	<div class="login-container">
-		<form>
+		<form name="loginForm">
 			<input type="text" class="input-field" placeholder="아이디" maxlength="10">
 			<input type="password" class="input-field" placeholder="비밀번호" maxlength="12">
 		</form>

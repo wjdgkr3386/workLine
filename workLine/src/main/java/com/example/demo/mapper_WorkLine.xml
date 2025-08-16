@@ -11,6 +11,10 @@
 		select count(mid) from member where mid=#{mid}
 	</select>
 
+	<select id="login" parameterType="com.example.demo.WorkLineDTO" resultType="int">
+		select count(*) from member where mid=#{mid} and pwd=#{pwd}
+	</select>
+
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">
 		insert into member (
 			uuid,
@@ -26,5 +30,6 @@
 			concat(#{phone1},#{phone2},#{phone3})
 		)
 	</insert>
-	 
+	
+	
 </mapper>

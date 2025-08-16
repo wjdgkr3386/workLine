@@ -28,6 +28,7 @@
 		background-color: #FCECDD;
 		border: none;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 	.signup-span{
 		font-size: 13px;

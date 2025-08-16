@@ -23,7 +23,7 @@
 			#{name},
 			#{mid},
 			#{pwd},
-			#{phone1}||#{phone2}||#{phone3}
+			concat(#{phone1},#{phone2},#{phone3})
 		)
 	</insert>
 	 

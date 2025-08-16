@@ -37,7 +37,6 @@
 	
 </style>
 <script>
-setInterval(function(){location.reload();} , 3 * 1000 );
 
 </script>
 </head>

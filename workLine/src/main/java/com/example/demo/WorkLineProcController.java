@@ -17,6 +17,9 @@ public class WorkLineProcController {
 	public int signupProc(
 		WorkLineDTO workLineDTO
 	) {
+		System.out.println(workLineDTO.getPhone1());
+		System.out.println(workLineDTO.getPhone2());
+		System.out.println(workLineDTO.getPhone3());
 		int cnt=0;
 		try {
 			cnt = workLineService.insertSignup(workLineDTO);

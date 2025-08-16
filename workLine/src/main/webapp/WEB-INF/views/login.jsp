@@ -38,14 +38,18 @@
 	
 </style>
 <script>
-
+	function login(){
+		
+	}
 </script>
 </head>
 <body>
 	<div class="login-container">
-		<input type="text" class="input-field" placeholder="아이디" maxlength="10">
-		<input type="password" class="input-field" placeholder="비밀번호" maxlength="12">
-		<button type="button" class="btn">로그인</button>
+		<form>
+			<input type="text" class="input-field" placeholder="아이디" maxlength="10">
+			<input type="password" class="input-field" placeholder="비밀번호" maxlength="12">
+		</form>
+		<button type="button" class="btn" onclick="login()">로그인</button>
 		<span class="signup-span" onclick="location.href='/signup'">
 			<i class="fa-solid fa-arrow-right-to-bracket"></i>
 			<a>회원가입</a>

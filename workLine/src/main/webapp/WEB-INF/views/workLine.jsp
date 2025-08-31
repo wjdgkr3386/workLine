@@ -20,13 +20,13 @@
 	#main-container .user-container{
 		border: 1px solid black;
 		position: relative;
-		width: 20%;
+		width: 15%;
 	}
 	
 	#main-container .chat-bax{
 		border: 1px solid black;
 		border-left: none;
-		width: 80%;
+		width: 85%;
 	}
 	
 	.user-container .user-list{

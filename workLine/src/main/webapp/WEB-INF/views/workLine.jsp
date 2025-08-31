@@ -8,7 +8,7 @@
 <style>
 	
 	img{
-		width: 100%;
+		height: 100%;
 	}
 	
 	#main-container{
@@ -36,8 +36,7 @@
 	}
 	
 	.user-container .image{
-		width: 20%;
-		height: auto;
+		width: 50px;
 		border-radius: 50%;
 		overflow : hidden;
 		display: flex;
@@ -48,13 +47,16 @@
 		padding: 10px;
 		width: 80%;
 		height: auto;
+		font-size: 12px;
 	}
 	
 	.user-container .pannel{
 		display: flex;
 		width: 100%;
-		height: 7%;
+		height: 50px;
 		margin-top: 5px;
+		box-sizing: border-box;
+		padding: 3px;
 	}
 	
 	.user-container .my-profile{

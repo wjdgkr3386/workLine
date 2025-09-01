@@ -72,10 +72,13 @@
 		bottom: 0;
 	}
 	
+	.name{
+		align-items: flex-end;  /* 말풍선과 시간 하단 맞추기 */
+	}
 	.chat{
 		max-width: 80%;
 		min-height: 40px;
-		margin-top: 10px;
+		margin-top: 5px;
 		background-color: white;
 		border-radius: 7px;
 		display: flex;
@@ -140,14 +143,15 @@
 		</div>
 		<div class="chat-container">
 		
+			<span class="name">이름</span>
 			<div class="chat-row">
-			  <div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-			  <span class="time">오전 9시</span>
+				<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				<span class="time">오전 9시</span>
 			</div>
 			
 			<div class="chat-row me">
-			  <span class="time">오후 9시</span>
-			  <div class="chat-me chat">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+				<span class="time">오후 9시</span>
+				<div class="chat-me chat">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
 			</div>
 			
 		</div>

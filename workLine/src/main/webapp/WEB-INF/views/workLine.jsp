@@ -153,7 +153,6 @@
 				<span class="time">오후 9시</span>
 				<div class="chat-me chat">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
 			</div>
-			
 		</div>
 	</div>
 	

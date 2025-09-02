@@ -15,6 +15,7 @@ public class WorkLineProcController {
 	@Autowired
 	WorkLineDAO workLineDAO;
 
+	//회원가입
 	@RequestMapping(value="/signupProc")
 	public int signupProc(
 		WorkLineDTO workLineDTO
@@ -31,7 +32,7 @@ public class WorkLineProcController {
 		return cnt;
 	}
 	
-	
+	//로그인
 	@RequestMapping(value="/loginProc")
 	public int loginProc(
 		WorkLineDTO workLineDTO,

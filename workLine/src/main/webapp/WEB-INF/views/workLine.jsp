@@ -125,6 +125,14 @@
 		border-radius: 50%;
 		overflow: hidden;
 	}
+	
+	.chat-you-box{
+		display: flex;
+	}
+	
+	.chat-another-you{
+		margin-left: 60px;
+	}
 </style>
 <script>
 
@@ -157,10 +165,14 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- 채팅공간 -->
 		<div class="chat-container">
-			<div style="display: flex;">
+		
+			<!-- 상대방 채팅 -->
+			<div class="chat-you-box">
 				<div class="image">
-					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" alt="이미지">
+					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
 				</div>
 				<div style="width:100%;">
 					<span class="name">이름</span>
@@ -171,11 +183,13 @@
 				</div>
 			</div>
 			
+			<!-- 내 채팅 -->
 			<div class="chat-row me">
 				<span class="time">오후 9시</span>
 				<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
 			</div>
 		</div>
+		<!-- 끝 채팅공간 -->
 	</div>
 	
 	

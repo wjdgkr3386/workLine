@@ -6,8 +6,10 @@
 <meta charset="UTF-8">
 <title>워크라인</title>
 <style>
-	div{
-		border: 1px solid black;
+	body{
+	    margin: 0;
+	    padding: 0;
+	    overflow-x: hidden;
 	}
 	
 	img{
@@ -78,6 +80,7 @@
 		display: flex;
 		position: absolute;
 		bottom: 0;
+		left: 0;
 	}
 	
 	.name{
@@ -133,6 +136,21 @@
 	.chat-another-you{
 		margin-left: 60px;
 	}
+	
+	.pannel.login-switch-n{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		background-color: #FCECDD;
+		margin: 0;
+		font-size: 1.5em;
+	}
+	
+	.pannel.login-switch-y{
+		display: none;
+		margin: 0;
+	}
 </style>
 <script>
 
@@ -155,8 +173,9 @@
 				
 			</div>
 			
-			<!-- 내 프로필 나타낼 공간 //아래 고정 -->
-			<div class="my-profile pannel">
+			
+			<!-- 로그인 o  -->
+			<div class="my-profile pannel login-switch-y">
 				<div class="image">
 					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
 				</div>
@@ -164,6 +183,17 @@
 					고양이
 				</div>
 			</div>
+			
+			<!-- 로그인 x -->
+			<div class="my-profile pannel login-switch-n" onclick="location.replace('/login')">
+				 로그인 하기
+			</div>
+			
+			
+			
+			
+			
+			
 		</div>
 		
 		<!-- 채팅공간 -->

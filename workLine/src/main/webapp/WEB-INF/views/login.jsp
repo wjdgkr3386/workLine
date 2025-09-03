@@ -37,7 +37,30 @@
 	}
 	
 </style>
+</head>
+<body>
+	<div class="login-container">
+		<form name="loginForm">
+			<input type="text" class="input-field" name="mid" placeholder="아이디" maxlength="10">
+			<input type="password" class="input-field" name="pwd" placeholder="비밀번호" maxlength="12">
+		</form>
+		<button type="button" class="btn" onclick="login()">로그인</button>
+		<span class="signup-span" onclick="location.href='/signup'">
+			<i class="fa-solid fa-arrow-right-to-bracket"></i>
+			<a>회원가입</a>
+		</span>
+	</div>
+</body>
 <script>
+	//엔터를 눌렀을때 폼 제출 방지
+	$(".input-field").on('keydown', function(event) {
+	    if (event.key === 'Enter') {
+	        //폼 제출 방지
+	        event.preventDefault();
+	        login();
+	    }
+	});
+
 	function login(){
 		const formObj = $("[name='loginForm']");
 		ajax(
@@ -56,18 +79,4 @@
 			);
 	}
 </script>
-</head>
-<body>
-	<div class="login-container">
-		<form name="loginForm">
-			<input type="text" class="input-field" name="mid" placeholder="아이디" maxlength="10">
-			<input type="password" class="input-field" name="pwd" placeholder="비밀번호" maxlength="12">
-		</form>
-		<button type="button" class="btn" onclick="login()">로그인</button>
-		<span class="signup-span" onclick="location.href='/signup'">
-			<i class="fa-solid fa-arrow-right-to-bracket"></i>
-			<a>회원가입</a>
-		</span>
-	</div>
-</body>
 </html>

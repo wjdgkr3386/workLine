@@ -6,8 +6,17 @@
 <meta charset="UTF-8">
 <title>워크라인</title>
 <style>
+	div{
+		border: 1px solid black;
+	}
+	
 	img{
-		height: 100%;
+		width:100%;
+		height:100%;
+		object-fit:fill;
+	}
+	.image{
+		margin-right: 10px;
 	}
 	
 	#main-container{
@@ -26,10 +35,9 @@
 		border: 1px solid black;
 		border-left: none;
 		width: 85%;
-		background-color: yellow; 
-		opacity: 0.5;
+		background-color: rgba(255, 255, 0, 0.4); /* 노란색 + 50% 투명 */
 		z-index: -1;
-		padding: 0 20px;
+		padding: 20px;
 		box-sizing: border-box;
 		overflow-y: auto;
 	}
@@ -90,24 +98,32 @@
 	}
 	
 	.chat-row {
-	  display: flex;
-	  align-items: flex-end;  /* 말풍선과 시간 하단 맞추기 */
-	  margin: 5px 0;
-	  gap: 5px;
+		display: flex;
+		align-items: flex-end;  /* 말풍선과 시간 하단 맞추기 */
+		margin: 5px 0;
+		gap: 5px;
 	}
 	
 	.chat-row.me { 
-	  justify-content: flex-end; /* 오른쪽 정렬 */
+		justify-content: flex-end; /* 오른쪽 정렬 */
 	}
 	
 	.chat-me.chat{
-	  background-color: #dcf8c6;
+		background-color: #dcf8c6;
 	}
 	
 	.time{
 		display: flex;
 		font-size: 12px;
 		color: grey;
+	}
+	
+	.chat-container .image{
+		display: flex;
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+		overflow: hidden;
 	}
 </style>
 <script>
@@ -142,16 +158,22 @@
 			</div>
 		</div>
 		<div class="chat-container">
-		
-			<span class="name">이름</span>
-			<div class="chat-row">
-				<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				<span class="time">오전 9시</span>
+			<div style="display: flex;">
+				<div class="image">
+					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" alt="이미지">
+				</div>
+				<div style="width:100%;">
+					<span class="name">이름</span>
+					<div class="chat-row">
+						<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+						<span class="time">오전 9시</span>
+					</div>
+				</div>
 			</div>
 			
 			<div class="chat-row me">
 				<span class="time">오후 9시</span>
-				<div class="chat-me chat">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+				<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
 			</div>
 		</div>
 	</div>

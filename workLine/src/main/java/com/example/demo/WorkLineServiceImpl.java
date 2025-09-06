@@ -21,4 +21,10 @@ public class WorkLineServiceImpl implements WorkLineService {
 		return cnt;
 	}
 	
+	
+	public int insertChat(WorkLineDTO workLineDTO) {
+		int cnt = 0;
+		cnt = workLineDAO.insertChat(workLineDTO);
+		return cnt;
+	}
 }

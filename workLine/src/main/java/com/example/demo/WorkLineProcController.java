@@ -50,4 +50,13 @@ public class WorkLineProcController {
 		}
 		return cnt;
 	}
+
+	@RequestMapping(value="/saveChatProc")
+	public int saveChatProc(
+		WorkLineDTO workLineDTO,
+		HttpSession session
+	) {
+		workLineService.insertChat(workLineDTO);
+		return 0;
+	}
 }

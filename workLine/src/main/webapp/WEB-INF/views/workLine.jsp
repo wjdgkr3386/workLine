@@ -161,9 +161,6 @@
 		display: flex;
 	}
 </style>
-<script>
-
-</script>
 </head>
 <body>
 	<div id="main-container">
@@ -198,7 +195,7 @@
 				 로그인 하기
 			</div>
 		</div>
-		<div style="height:100%">
+		<div style="height:100%; width:100%;">
 			<!-- 채팅공간 -->
 			<div class="chat-container">
 			
@@ -221,56 +218,39 @@
 					<span class="time">오후 9시</span>
 					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
 				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
 			</div> <!-- 채팅공간 끝 -->
 			
-			<input type="text" name="chat" class="chat-input">
+			<!-- 채팅창 -->
+			<form name="chatForm">
+				<input type="text" name="chat" class="chat-input">
+			</form>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-<!-- <button type="button" onclick="location.href='/login'">로그인</button> -->
+	<script>
+		function saveChat(){
+			var formObj = $("[name='chatForm']");
+			var chat = formObj.find("input[name='chat']").val().trim();
+			
+			//값이 들어있는지 확인
+	        if (chat) {
+	            return;
+	        }
+			
+			ajax(
+				     "/loginProc",
+				     "post",
+				     formObj,
+				     function (cnt) {
+				    	 if(cnt == 1){
+				    		 location.replace("workLine");
+				    	 }else if(cnt == 0){
+				    		 alert("비밀번호가 틀립니다.");
+				    	 }else{
+				    		 alert("실패했습니다. 관리자에게 문의해주세요.");
+				    	 }
+				     }
+				);
+		}
+	</script>
 </body>
 </html>

@@ -12,4 +12,7 @@ public interface WorkLineDAO {
 	
 	//로그인
 	int login(WorkLineDTO workLineDTO);
+	
+	//채팅
+	int insertChat(WorkLineDTO workLineDTO);
 }

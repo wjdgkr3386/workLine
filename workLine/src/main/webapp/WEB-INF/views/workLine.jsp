@@ -36,9 +36,9 @@
 	#main-container .chat-container{
 		border: 1px solid black;
 		border-left: none;
-		width: 85%;
+		width: 100%;
+		height: calc(100% - 50px);
 		background-color: rgba(255, 255, 0, 0.4); /* 노란색 + 50% 투명 */
-		z-index: -1;
 		padding: 20px;
 		box-sizing: border-box;
 		overflow-y: auto;
@@ -64,6 +64,9 @@
 		width: 80%;
 		height: auto;
 		font-size: 12px;
+		white-space: nowrap;        /* 한 줄로만 표시 (줄바꿈 X) */
+		overflow: hidden;           /* 박스 넘치는 글자는 안 보이게 */
+		text-overflow: ellipsis;    /* 잘린 부분에 ... 표시 */
 	}
 	
 	.user-container .pannel{
@@ -144,12 +147,18 @@
 		cursor: pointer;
 		background-color: #FCECDD;
 		margin: 0;
-		font-size: 1.5em;
+		font-size: 1em;
 	}
 	
 	.pannel.login-switch-y{
 		display: none;
 		margin: 0;
+	}
+	
+	.chat-input{
+		height: 50px;
+		width: 100%;
+		display: flex;
 	}
 </style>
 <script>
@@ -188,38 +197,74 @@
 			<div class="my-profile pannel login-switch-n" onclick="location.replace('/login')">
 				 로그인 하기
 			</div>
-			
-			
-			
-			
-			
-			
 		</div>
-		
-		<!-- 채팅공간 -->
-		<div class="chat-container">
-		
-			<!-- 상대방 채팅 -->
-			<div class="chat-you-box">
-				<div class="image">
-					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
-				</div>
-				<div style="width:100%;">
-					<span class="name">이름</span>
-					<div class="chat-row">
-						<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-						<span class="time">오전 9시</span>
+		<div style="height:100%">
+			<!-- 채팅공간 -->
+			<div class="chat-container">
+			
+				<!-- 상대방 채팅 -->
+				<div class="chat-you-box">
+					<div class="image">
+						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+					</div>
+					<div style="width:100%;">
+						<span class="name">이름</span>
+						<div class="chat-row">
+							<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+							<span class="time">오전 9시</span>
+						</div>
 					</div>
 				</div>
-			</div>
+				
+				<!-- 내 채팅 -->
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+				<div class="chat-row me">
+					<span class="time">오후 9시</span>
+					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+				</div>
+			</div> <!-- 채팅공간 끝 -->
 			
-			<!-- 내 채팅 -->
-			<div class="chat-row me">
-				<span class="time">오후 9시</span>
-				<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-			</div>
+			<input type="text" name="chat" class="chat-input">
 		</div>
-		<!-- 끝 채팅공간 -->
 	</div>
 	
 	

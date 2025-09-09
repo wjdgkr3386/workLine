@@ -52,6 +52,12 @@
 	</div>
 </body>
 <script>
+	$(function(){init();});
+	function init(){
+		$("[name='mid']").val("wjdgkr3386");
+		$("[name='pwd']").val("kjh3765!");
+	}
+
 	//엔터를 눌렀을때 폼 제출 방지
 	$(".input-field").on('keydown', function(event) {
 	    if (event.key === 'Enter') {

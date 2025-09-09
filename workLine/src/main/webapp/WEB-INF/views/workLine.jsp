@@ -141,7 +141,6 @@
 	}
 	
 	.pannel.login-switch-n{
-		display: flex;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
@@ -151,7 +150,6 @@
 	}
 	
 	.pannel.login-switch-y{
-		display: none;
 		margin: 0;
 	}
 	
@@ -166,7 +164,8 @@
 	<div id="main-container">
 		<div class="user-container">
 			<div class="user-list">
-				
+			
+			
 				<!-- 반복할 유저 목록 -->
 				<div class="pannel">
 					<div class="image">
@@ -175,26 +174,35 @@
 					<div class="info">
 						고양이
 					</div>
-				</div>
+				</div>	
+				
 				
 			</div>
 			
 			
-			<!-- 로그인 o  -->
-			<div class="my-profile pannel login-switch-y">
-				<div class="image">
-					<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
-				</div>
-				<div class="info">
-					고양이
-				</div>
-			</div>
-			
-			<!-- 로그인 x -->
-			<div class="my-profile pannel login-switch-n" onclick="location.replace('/login')">
-				 로그인 하기
-			</div>
+				<c:choose>
+				    <c:when test="${not empty sessionScope.mid}">
+						<!-- 로그인 o  -->
+						<div class="my-profile pannel login-switch-y">
+							<div class="image">
+								<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+							</div>
+							<div class="info">
+								고양이
+							</div>
+						</div>
+				    </c:when>
+				    <c:otherwise>
+						<!-- 로그인 x -->
+						<div class="my-profile pannel login-switch-n" onclick="location.href='/login'">
+							 로그인 하기
+						</div>
+				    </c:otherwise>
+				</c:choose>
+				
+				
 		</div>
+			
 		<div style="height:100%; width:100%;">
 			<!-- 채팅공간 -->
 			<div class="chat-container">
@@ -222,7 +230,14 @@
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
-				<input type="text" name="content" class="chat-input">
+				<c:choose>
+				    <c:when test="${not empty sessionScope.mid}">
+						<input type="text" name="content" class="chat-input">
+				    </c:when>
+				    <c:otherwise>
+						<input type="text" name="content" class="chat-input" disabled>
+				    </c:otherwise>
+				</c:choose>
 			</form>
 		</div>
 	</div>

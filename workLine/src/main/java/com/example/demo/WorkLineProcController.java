@@ -26,7 +26,7 @@ public class WorkLineProcController {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("WorkLineProcController에서 signupProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return cnt;
 	}
@@ -45,7 +45,7 @@ public class WorkLineProcController {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("WorkLineProcController에서 loginProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			System.out.println(e);
+			e.printStackTrace();
 			cnt=-1;
 		}
 		return cnt;
@@ -56,7 +56,14 @@ public class WorkLineProcController {
 		WorkLineDTO workLineDTO,
 		HttpSession session
 	) {
-		workLineService.insertChat(workLineDTO);
+		try {
+			workLineService.insertChat(workLineDTO);
+		}catch(Exception e) {
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println("WorkLineProcController에서 saveChatProc를 실행하다가 오류가 생겼습니다.");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			e.printStackTrace();
+		}
 		return 0;
 	}
 }

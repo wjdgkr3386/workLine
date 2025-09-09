@@ -222,17 +222,17 @@
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
-				<input type="text" name="chat" class="chat-input">
+				<input type="text" name="content" class="chat-input">
 			</form>
 		</div>
 	</div>
 	<script>
 		function saveChat(){
 			var formObj = $("[name='chatForm']");
-			var chat = formObj.find("input[name='chat']").val().trim();
+			var content = formObj.find("input[name='content']").val().trim();
 			
 			//값이 들어있는지 확인
-	        if (chat) {
+	        if (content) {
 	            return;
 	        }
 			

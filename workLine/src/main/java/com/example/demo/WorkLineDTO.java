@@ -10,7 +10,7 @@ public class WorkLineDTO {
 	private String phone2;
 	private String phone3;
 	
-	private String chat;
+	private String content;
 	
 	public String getUuid() {
 		return uuid;
@@ -54,11 +54,11 @@ public class WorkLineDTO {
 	public void setPhone3(String phone3) {
 		this.phone3 = phone3;
 	}
-	public String getChat() {
-		return chat;
+	public String getContent() {
+		return content;
 	}
-	public void setChat(String chat) {
-		this.chat = chat;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	

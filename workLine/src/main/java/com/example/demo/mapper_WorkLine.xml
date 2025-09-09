@@ -31,8 +31,8 @@
 		)
 	</insert>
 	
-<!-- 	<insert id="insertChat" parameterType="com.example.demo.WorkLineDTO">
+ 	<insert id="insertChat" parameterType="com.example.demo.WorkLineDTO">
 		insert into 
-	</insert> -->
+	</insert>
 	
 </mapper>

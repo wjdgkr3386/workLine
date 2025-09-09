@@ -12,3 +12,29 @@ create table member(
     pwd     varchar(40)    not null,
     phone   varchar(22)    not null     
 );
+
+
+#1:1 채팅
+CREATE TABLE private_chat (
+    chat_id     BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- 채팅 고유 번호
+    my_id       BIGINT NOT NULL,                             -- 내 번호
+    other_id    BIGINT NOT NULL,                             -- 상대 번호
+    message     TEXT NOT NULL,                               -- 채팅 내용
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP          -- 채팅 시간
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+#단체 채팅
+CREATE TABLE group_chat_message (
+    message_id   BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 채팅 고유 번호
+    room_id      BIGINT NOT NULL,                    -- 채팅방 고유 번호
+    sender_id    BIGINT NOT NULL,                    -- 참여자(보낸 사람)
+    message      TEXT NOT NULL,                      -- 채팅 내용
+    created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 채팅 시간
+);
+
+#채팅방 목록
+CREATE TABLE chat_room (
+    room_id    BIGINT AUTO_INCREMENT PRIMARY KEY, -- 채팅방 고유 번호
+    member_id  BIGINT NOT NULL,                   -- 참여자
+    joined_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 참여 시간(옵션)
+);

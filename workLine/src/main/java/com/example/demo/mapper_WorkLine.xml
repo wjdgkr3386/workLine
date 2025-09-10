@@ -15,6 +15,10 @@
 		select count(*) from member where mid=#{mid} and pwd=#{pwd}
 	</select>
 
+	<select id="getUuid" parameterType="com.example.demo.WorkLineDTO" resultType="String">
+		select uuid from member where mid=#{mid} and pwd=#{pwd}
+	</select>
+
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">
 		insert into member (
 			uuid,

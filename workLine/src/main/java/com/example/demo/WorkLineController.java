@@ -22,7 +22,7 @@ public class WorkLineController {
 	public ModelAndView login(
 		HttpSession session
 	){
-		session.removeAttribute("mid");
+		session.removeAttribute("uuid");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName( "login" );
 		return mav;

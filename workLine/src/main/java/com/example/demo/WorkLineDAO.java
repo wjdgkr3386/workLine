@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -12,6 +14,9 @@ public interface WorkLineDAO {
 	
 	//로그인
 	int login(WorkLineDTO workLineDTO);
+	String getUuid(WorkLineDTO workLineDTO);
+	
+	
 	
 	//채팅
 	int insertChat(WorkLineDTO workLineDTO);

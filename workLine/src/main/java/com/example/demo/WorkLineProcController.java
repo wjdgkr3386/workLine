@@ -40,7 +40,10 @@ public class WorkLineProcController {
 		int cnt=0;
 		try {
 			cnt=workLineDAO.login(workLineDTO);
-			if(cnt==1) { session.setAttribute("mid", workLineDTO.getMid()); }
+			if(cnt==1) {
+				String uuid = workLineDAO.getUuid(workLineDTO);
+				session.setAttribute("uuid", uuid);
+			}
 		}catch(Exception e) {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("WorkLineProcController에서 loginProc를 실행하다가 오류가 생겼습니다.");

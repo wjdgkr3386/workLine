@@ -193,10 +193,20 @@
 			);
 	}
 	
-	function menu(){
+	function menu(){		
 		var menuModal = $(".menu-modal");
 		var menu = $(".menu");
 		menuModal.css("display", "block");
+		
+
+		var outline = $(".menu-outline");
+		var offset = outline.offset();
+
+		menu.css({
+		    top : offset.top - menu.outerHeight() - 15 + 'px',
+		    left : offset.left + outline.outerWidth() - menu.outerWidth() + 'px'
+		});
+		
 		
 		menuModal.on("click",function(event){
 			menuModal.css("display", "none");
@@ -235,7 +245,7 @@
 						</div>
 						<div class="info">
 							<span>고양이</span>
-							<span style="font-size:24px; cursor:pointer;" onclick="menu()">
+							<span style="font-size:24px; cursor:pointer;" class="menu-outline" onclick="menu()">
 								<ion-icon name="menu-outline"></ion-icon>
 							</span>
 						</div>

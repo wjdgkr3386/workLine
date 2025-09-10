@@ -17,6 +17,7 @@
     background-color: FBF5DE;
     border: 1px solid black;
     border-radius: 10px;
+    position: absolute;
 }
 
 .menu div{

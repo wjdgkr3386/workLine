@@ -243,8 +243,8 @@
 				<div class="toolbar">
 					<span>채팅</span>
 					<span style="display:flex; gap:15px;">
-					<i class="fi fi-rr-search"></i>
-					<i class="fi fi-rr-comments"></i>
+					<i class="fi fi-rr-search" title="검색"></i>
+					<i class="fi fi-rr-comments" title="채팅방 만들기"></i>
 					</span>
 				</div>			
 				<!-- 반복할 유저 목록 -->

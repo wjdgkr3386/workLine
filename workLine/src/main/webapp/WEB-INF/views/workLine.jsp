@@ -7,6 +7,7 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-straight/css/uicons-bold-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
 <title>워크라인</title>
 <style>
 	body{
@@ -58,7 +59,6 @@
 	.user-container .toolbar{
 		height: 5%;
 		overflow: none;
-		border: 1px solid black;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -234,6 +234,30 @@
 			event.stopPropagation(); // 메뉴 클릭 시 모달 닫히는 걸 막음
 		});
 	}
+	
+	function newchat(){
+		newchatModal = $(".newchat-box-modal");
+		newchatBox = $(".newchat-box");
+		newchatModal.css("display", "block");
+		
+		var toolbar = $(".toolbar");
+		var comments = $(".fi-rr-comments");
+		var offset = comments.offset();
+		
+		newchatBox.css({
+		    top : toolbar.outerHeight() + 'px',
+		    left : offset.left + comments.outerWidth() - newchatBox.outerWidth() + 'px'
+		});
+		
+		newchatModal.on("click",function(event){
+			menuModal.css("display", "none");
+			menuModal.off("click");
+			menu.off("click");
+		});
+		newchatBox.on("click",function(event){
+			event.stopPropagation(); // 메뉴 클릭 시 모달 닫히는 걸 막음
+		});
+	}
 </script>
 </head>
 <body>
@@ -243,8 +267,8 @@
 				<div class="toolbar">
 					<span>채팅</span>
 					<span style="display:flex; gap:15px;">
-					<i class="fi fi-rr-search" title="검색"></i>
-					<i class="fi fi-rr-comments" title="채팅방 만들기"></i>
+						<i class="fi fi-rr-search" title="검색"></i>
+						<i class="fi fi-rr-comments" title="새로운 채팅" onclick="newchat()"></i>
 					</span>
 				</div>			
 				<!-- 반복할 유저 목록 -->
@@ -322,5 +346,6 @@
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/include/menu.jsp" %>
+	<%@ include file="/WEB-INF/include/newchat.jsp" %>
 </body>
 </html>

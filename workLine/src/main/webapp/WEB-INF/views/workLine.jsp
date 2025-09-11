@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-straight/css/uicons-bold-straight.css'>
 <title>워크라인</title>
 <style>
 	body{
@@ -48,9 +50,20 @@
 	
 	.user-container .user-list{
 		width: 100%;
-		height: 93%;
+		height: 88%;
 		overflow-y: auto;
 		overflow-x: hidden;
+	}
+	
+	.user-container .toolbar{
+		height: 5%;
+		overflow: none;
+		border: 1px solid black;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px;
+		box-sizing: border-box;
 	}
 	
 	.user-container .image{
@@ -163,6 +176,10 @@
 		width: 100%;
 		display: flex;
 	}
+	
+	.fi{
+		cursor: pointer;
+	}
 </style>
 <script>
 	$(function(){init();});
@@ -223,8 +240,13 @@
 	<div id="main-container">
 		<div class="user-container">
 			<div class="user-list">
-				<%-- <%@ include file="/WEB-INF/include/uuid.jsp" %> --%>
-			
+				<div class="toolbar">
+					<span>채팅</span>
+					<span style="display:flex; gap:15px;">
+					<i class="fi fi-rr-search"></i>
+					<i class="fi fi-rr-comments"></i>
+					</span>
+				</div>			
 				<!-- 반복할 유저 목록 -->
 				<div class="pannel">
 					<div class="image">

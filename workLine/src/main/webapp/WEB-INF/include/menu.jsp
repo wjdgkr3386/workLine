@@ -34,12 +34,14 @@
 	cursor: pointer;
 }
 </style>
+<script>
+</script>
 
 <div class="menu-modal">
     <div class="menu">
 		<div>친구추가 코드</div>
 		<div>친구 검색</div>
-		<div>로그아웃</div>
 		<div>설정</div>
+		<div onclick="location.href='/login'">로그아웃</div>
     </div>
 </div>

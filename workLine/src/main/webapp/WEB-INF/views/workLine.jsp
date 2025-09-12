@@ -250,9 +250,9 @@
 		});
 		
 		newchatModal.on("click",function(event){
-			menuModal.css("display", "none");
-			menuModal.off("click");
-			menu.off("click");
+			newchatModal.css("display", "none");
+			newchatModal.off("click");
+			newchatBox.off("click");
 		});
 		newchatBox.on("click",function(event){
 			event.stopPropagation(); // 메뉴 클릭 시 모달 닫히는 걸 막음

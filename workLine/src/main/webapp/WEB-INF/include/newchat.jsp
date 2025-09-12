@@ -12,13 +12,16 @@
 }
 
 .newchat-box {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 100px;
     background-color: FBF5DE;
     border: 1px solid black;
     border-radius: 10px;
     position: absolute;
-    gap: 15px;
+    gap: 40px;
+    display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .newchat-box .fi{
@@ -26,12 +29,26 @@
 	-webkit-user-select: none; /* 크롬/사파리 */
 	-moz-user-select: none; /* 파이어폭스 */
 	-ms-user-select: none; /* IE/Edge */
+	font-size: 40px;
+}
+
+.newchat-box>span{
+	flex-direction: column;
+    display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>
 
 <div class="newchat-box-modal">
     <div class="newchat-box">
-		<i class="fi fi-ts-beacon"></i>
-		<i class="fi fi-rr-comments"></i>
+		<span>
+			<i class="fi fi-ts-beacon"></i>
+			<span>일반 채팅</span>
+		</span>
+		<span>
+			<i class="fi fi-rr-comments"></i>
+			<span>일반 채팅</span>
+		</span>
     </div>
 </div>

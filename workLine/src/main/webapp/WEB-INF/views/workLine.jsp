@@ -24,6 +24,10 @@
 	}
 	.image{
 		margin-right: 10px;
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
 	}
 	
 	#main-container{
@@ -85,6 +89,10 @@
 		white-space: nowrap;        /* 한 줄로만 표시 (줄바꿈 X) */
 		overflow: hidden;           /* 박스 넘치는 글자는 안 보이게 */
 		text-overflow: ellipsis;    /* 잘린 부분에 ... 표시 */
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
 	}
 	
 	.user-container .pannel{
@@ -106,6 +114,10 @@
 	
 	.name{
 		align-items: flex-end;  /* 말풍선과 시간 하단 맞추기 */
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
 	}
 	.chat{
 		max-width: 80%;
@@ -140,6 +152,10 @@
 		display: flex;
 		font-size: 12px;
 		color: grey;
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
 	}
 	
 	.chat-container .image{
@@ -178,6 +194,77 @@
 	}
 	
 	.fi{
+		cursor: pointer;
+	}
+	
+	.menu-modal {
+	    width: 100%;
+	    height: 100%;
+	    z-index: 999;
+	    display: none;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	}
+	
+	.menu {
+	    width: 150px;
+	    height: 200px;
+	    background-color: FBF5DE;
+	    border: 1px solid black;
+	    border-radius: 10px;
+	    position: absolute;
+	}
+	
+	.menu div{
+		margin-top: 10px;
+	    padding: 7px;
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
+	}
+	
+	.menu div:hover{
+		background-color: F5F0CD;
+		cursor: pointer;
+	}
+		.newchat-box-modal {
+	    width: 100%;
+	    height: 100%;
+	    z-index: 999;
+	    display: none;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	}
+	
+	.newchat-box {
+	    width: 200px;
+	    height: 100px;
+	    background-color: FBF5DE;
+	    border: 1px solid black;
+	    border-radius: 10px;
+	    position: absolute;
+	    gap: 40px;
+	    display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.newchat-box .fi{
+		user-select: none; /* 텍스트 선택 막기 */
+		-webkit-user-select: none; /* 크롬/사파리 */
+		-moz-user-select: none; /* 파이어폭스 */
+		-ms-user-select: none; /* IE/Edge */
+		font-size: 40px;
+	}
+	
+	.newchat-box>span{
+		flex-direction: column;
+	    display: flex;
+		justify-content: center;
+		align-items: center;
 		cursor: pointer;
 	}
 </style>
@@ -345,7 +432,27 @@
 			</form>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/include/menu.jsp" %>
-	<%@ include file="/WEB-INF/include/newchat.jsp" %>
+	
+	<div class="menu-modal">
+	    <div class="menu">
+			<div>친구추가 코드</div>
+			<div>친구 검색</div>
+			<div>설정</div>
+			<div onclick="location.href='/login'">로그아웃</div>
+	    </div>
+	</div>
+	
+	<div class="newchat-box-modal">
+	    <div class="newchat-box">
+			<span>
+				<i class="fi fi-ts-beacon"></i>
+				<span>일반 채팅</span>
+			</span>
+			<span>
+				<i class="fi fi-rr-comments"></i>
+				<span>단체 채팅</span>
+			</span>
+	    </div>
+	</div>
 </body>
 </html>

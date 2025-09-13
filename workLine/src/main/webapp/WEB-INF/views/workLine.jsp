@@ -277,8 +277,8 @@
 				var reader = new FileReader();
 				//파일 읽기가 완료되면 자동으로 실행되는 onload, 그 안에 실행될 함수 지정
 				reader.onload = function(e){
-					$('.image').attr('src', e.target.result);
-					$("[name='is_select']").val('1');
+					$('.my-profile-image').attr('src', e.target.result);
+					//$("[name='is_select']").val('1');
 				}
 				
 				reader.readAsDataURL(file);
@@ -374,7 +374,7 @@
 				</div>			
 				<!-- 반복할 유저 목록 -->
 				<div class="pannel">
-					<div class="image-div" onclick="$('#fileInput').click();">
+					<div class="image-div">
 						<input type="file" id="fileInput" name="img" style="display:none;">
 						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" >
 					</div>
@@ -388,8 +388,8 @@
 			    <c:when test="${not empty sessionScope.uuid}">
 					<!-- 로그인 o  -->
 					<div class="my-profile pannel login-switch-y">
-						<div class="image-div">
-							<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+						<div class="image-div" onclick="$('#fileInput').click();">
+							<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
 						</div>
 						<div class="info">
 							<span>고양이</span>

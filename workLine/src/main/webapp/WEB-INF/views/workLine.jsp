@@ -22,7 +22,7 @@
 		height:100%;
 		object-fit:fill;
 	}
-	.image{
+	.image-div{
 		margin-right: 10px;
 		user-select: none; /* 텍스트 선택 막기 */
 		-webkit-user-select: none; /* 크롬/사파리 */
@@ -70,7 +70,7 @@
 		box-sizing: border-box;
 	}
 	
-	.user-container .image{
+	.user-container .image-div{
 		width: 50px;
 		border-radius: 50%;
 		overflow : hidden;
@@ -158,7 +158,7 @@
 		-ms-user-select: none; /* IE/Edge */
 	}
 	
-	.chat-container .image{
+	.chat-container .image-div{
 		display: flex;
 		height: 50px;
 		width: 50px;
@@ -270,7 +270,21 @@
 </style>
 <script>
 	$(function(){init();});
-	function init(){}
+	function init(){
+		$('#fileInput').on('change', function(event){
+			var file = event.target.files[0];
+			if(file){
+				var reader = new FileReader();
+				//파일 읽기가 완료되면 자동으로 실행되는 onload, 그 안에 실행될 함수 지정
+				reader.onload = function(e){
+					$('.image').attr('src', e.target.result);
+					$("[name='is_select']").val('1');
+				}
+				
+				reader.readAsDataURL(file);
+			}
+		});
+	}
 
 	function saveChat(){
 		var formObj = $("[name='chatForm']");
@@ -360,8 +374,9 @@
 				</div>			
 				<!-- 반복할 유저 목록 -->
 				<div class="pannel">
-					<div class="image">
-						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+					<div class="image-div" onclick="$('#fileInput').click();">
+						<input type="file" id="fileInput" name="img" style="display:none;">
+						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" >
 					</div>
 					<div class="info">
 						고양이
@@ -373,7 +388,7 @@
 			    <c:when test="${not empty sessionScope.uuid}">
 					<!-- 로그인 o  -->
 					<div class="my-profile pannel login-switch-y">
-						<div class="image">
+						<div class="image-div">
 							<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
 						</div>
 						<div class="info">
@@ -400,7 +415,7 @@
 			
 				<!-- 상대방 채팅 -->
 				<div class="chat-you-box">
-					<div class="image">
+					<div class="image-div">
 						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
 					</div>
 					<div style="width:100%;">

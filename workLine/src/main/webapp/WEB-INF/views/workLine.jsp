@@ -22,6 +22,7 @@
 		height:100%;
 		object-fit:fill;
 	}
+	
 	.image-div{
 		margin-right: 10px;
 		user-select: none; /* 텍스트 선택 막기 */
@@ -40,13 +41,19 @@
 		border: 1px solid black;
 		position: relative;
 		width: 15%;
+		min-width: 130px;
 	}
 	
 	#main-container .chat-container{
 		border: 1px solid black;
 		border-left: none;
-		width: 100%;
-		height: calc(100% - 50px);
+		width: 85%;
+		height: 100%;
+		box-sizing: border-box;
+	}
+	
+	.chat-container .chat-list{
+		height: calc(100% - 50px); 
 		background-color: rgba(255, 255, 0, 0.4); /* 노란색 + 50% 투명 */
 		padding: 20px;
 		box-sizing: border-box;
@@ -388,8 +395,8 @@
 			    <c:when test="${not empty sessionScope.uuid}">
 					<!-- 로그인 o  -->
 					<div class="my-profile pannel login-switch-y">
-						<div class="image-div" onclick="$('#fileInput').click();">
-							<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+						<div class="image-div">
+							<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" style="cursor:pointer;" onclick="$('#fileInput').click();">
 						</div>
 						<div class="info">
 							<span>고양이</span>
@@ -409,10 +416,9 @@
 				
 		</div>
 			
-		<div style="height:100%; width:100%;">
 			<!-- 채팅공간 -->
-			<div class="chat-container">
-			
+		<div class="chat-container">
+			<div class="chat-list">
 				<!-- 상대방 채팅 -->
 				<div class="chat-you-box">
 					<div class="image-div">
@@ -425,8 +431,8 @@
 							<span class="time">오전 9시</span>
 						</div>
 					</div>
-				</div>
-				
+				</div>		
+					
 				<!-- 내 채팅 -->
 				<div class="chat-row me">
 					<span class="time">오후 9시</span>

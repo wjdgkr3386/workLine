@@ -41,7 +41,8 @@
 		border: 1px solid black;
 		position: relative;
 		width: 15%;
-		min-width: 130px;
+		min-width: 280px;
+		min-height: 850px;
 	}
 	
 	#main-container .chat-container{
@@ -274,6 +275,23 @@
 		align-items: center;
 		cursor: pointer;
 	}
+	
+	.btn{
+		cursor: pointer;
+		display:inline-block;
+		width: 70px;
+		padding: 5px;
+		text-align:center;
+		border-radius: 8px;
+	}
+	
+	.btn:hover{
+		scale: 1.1;
+	}
+	
+	.btn.btn-select{
+		background-color: lightgrey;
+	}
 </style>
 <script>
 	$(function(){init();});
@@ -366,6 +384,17 @@
 			event.stopPropagation(); // 메뉴 클릭 시 모달 닫히는 걸 막음
 		});
 	}
+	
+	function selectBnt(n) {
+	    if (n === 1) { // '=='보다 '===' 사용을 권장합니다.
+	        $("#toolFriend").removeClass('btn-select');
+	        $("#toolChat").addClass('btn-select');
+	    } else if (n === 2) { // else if를 사용하여 명확하게 만듭니다.
+	        $("#toolChat").removeClass('btn-select');
+	        $("#toolFriend").addClass('btn-select');
+	    }
+	}
+	
 </script>
 </head>
 <body>
@@ -373,7 +402,10 @@
 		<div class="user-container">
 			<div class="user-list">
 				<div class="toolbar">
-					<span>채팅</span>
+					<span>
+						<span class="btn btn-select" id="toolChat" onclick="selectBnt(1)">채팅</span>
+						<span class="btn" id="toolFriend" onclick="selectBnt(2)">친구</span>
+					</span>
 					<span style="display:flex; gap:15px;">
 						<i class="fi fi-rr-search" title="검색"></i>
 						<i class="fi fi-rr-comments" title="새로운 채팅" onclick="newchat()"></i>

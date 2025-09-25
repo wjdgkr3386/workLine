@@ -395,6 +395,27 @@
 	    }
 	}
 	
+	function clipboard(){
+		if(${empty sessionScope.uuid}){
+			return;
+		}
+		const text = "${sessionScope.uuid}";
+
+		// 임시 input 생성
+		const tempInput = document.createElement("input");
+		tempInput.value = text;
+		document.body.appendChild(tempInput);
+
+		// 선택 후 복사
+		tempInput.select();
+		document.execCommand("copy");
+
+		// 임시 input 제거
+		document.body.removeChild(tempInput);
+		
+		alert("복사되었습니다");
+	}
+	
 </script>
 </head>
 <body>
@@ -488,7 +509,7 @@
 	
 	<div class="menu-modal">
 	    <div class="menu">
-			<div>친구추가 코드</div>
+			<div onclick="clipboard()">내 고유 코드</div>
 			<div>친구 검색</div>
 			<div>설정</div>
 			<div onclick="location.href='/login'">로그아웃</div>

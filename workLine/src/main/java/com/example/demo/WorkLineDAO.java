@@ -20,4 +20,8 @@ public interface WorkLineDAO {
 	
 	//채팅
 	int insertChat(WorkLineDTO workLineDTO);
+	
+	//친구추가
+	int isFriend(Map<String,Object> map);
+	
 }

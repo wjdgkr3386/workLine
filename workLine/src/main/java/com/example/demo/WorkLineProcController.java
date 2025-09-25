@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +72,37 @@ public class WorkLineProcController {
 		}
 		return 0;
 	}
+
+	@RequestMapping(value="/addFriendProc")
+	public int addFriendProc(
+		String friendCode,
+		HttpSession session
+	) {
+		String uuid = (String) session.getAttribute("uuid");
+		if(uuid==null) {
+			return -1;
+		}else if(uuid.equals(friendCode)) {
+			return -3;
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uuid", uuid);
+		map.put("friendCode", friendCode);
+		System.out.println("uuid" + uuid);
+		System.out.println("friendCode" + friendCode);
+		try {
+			if(workLineDAO.isFriend(map)>0) {
+				return 1;
+			}else {
+				return -2;
+			}
+		}catch(Exception e) {
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			System.out.println("WorkLineProcController에서 addFriendProc를 실행하다가 오류가 생겼습니다.");
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	
 }

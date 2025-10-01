@@ -107,7 +107,6 @@
 		display: flex;
 		width: 100%;
 		height: 50px;
-		margin: 3px;
 		padding: 3px;
 		box-sizing: border-box;
 	}
@@ -180,19 +179,6 @@
 	
 	.chat-another-you{
 		margin-left: 60px;
-	}
-	
-	.pannel.login-switch-n{
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-		background-color: #FCECDD;
-		margin: 0;
-		font-size: 1em;
-	}
-	
-	.pannel.login-switch-y{
-		margin: 0;
 	}
 	
 	.chat-input{
@@ -474,28 +460,17 @@
 				</div>	
 			</div>
 			
-			<c:choose>
-			    <c:when test="${not empty sessionScope.uuid}">
-					<!-- 로그인 o  -->
-					<div class="my-profile pannel login-switch-y">
-						<div class="image-div">
-							<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" style="cursor:pointer;" onclick="$('#fileInput').click();">
-						</div>
-						<div class="info">
-							<span>고양이</span>
-							<span style="font-size:24px; cursor:pointer;" class="menu-outline" onclick="menu()">
-								<ion-icon name="menu-outline"></ion-icon>
-							</span>
-						</div>
-					</div>
-			    </c:when>
-			    <c:otherwise>
-					<!-- 로그인 x -->
-					<div class="my-profile pannel login-switch-n" onclick="location.href='/login'">
-						 로그인 하기
-					</div>
-			    </c:otherwise>
-			</c:choose>
+			<div class="my-profile pannel">
+				<div class="image-div">
+					<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" style="cursor:pointer;" onclick="$('#fileInput').click();">
+				</div>
+				<div class="info">
+					<span>고양이</span>
+					<span style="font-size:24px; cursor:pointer;" class="menu-outline" onclick="menu()">
+						<ion-icon name="menu-outline"></ion-icon>
+					</span>
+				</div>
+			</div>
 				
 		</div>
 			
@@ -525,14 +500,7 @@
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
-				<c:choose>
-				    <c:when test="${not empty sessionScope.uuid}">
-						<input type="text" name="content" class="chat-input" placeholder="메시지 입력">
-				    </c:when>
-				    <c:otherwise>
-						<input type="text" name="content" class="chat-input" disabled>
-				    </c:otherwise>
-				</c:choose>
+				<input type="text" name="content" class="chat-input" placeholder="메시지 입력">
 			</form>
 		</div>
 	</div>

@@ -16,12 +16,11 @@ public interface WorkLineDAO {
 	int login(WorkLineDTO workLineDTO);
 	String getUuid(WorkLineDTO workLineDTO);
 	
-	
+	Map<String,Object> getUser(String uuid);
 	
 	//채팅
 	int insertChat(WorkLineDTO workLineDTO);
 	
 	//친구추가
 	int isFriend(Map<String,Object> map);
-	
 }

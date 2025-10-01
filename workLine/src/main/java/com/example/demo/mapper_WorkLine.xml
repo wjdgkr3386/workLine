@@ -19,6 +19,20 @@
 		select uuid from member where mid=#{mid} and pwd=#{pwd}
 	</select>
 	
+	<select id="getUser" parameterType="String" resultType="java.util.HashMap">
+		select
+			uuid as "UUID",
+			name as "NAME",
+			mid as "MID",
+			pwd as "PWD",
+			phone as "PHONE",
+			img as "IMG"
+		from
+			member
+		where
+			uuid=#{uuid}
+	</select>
+	
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from member where uuid=#{friendCode}
 	</select>

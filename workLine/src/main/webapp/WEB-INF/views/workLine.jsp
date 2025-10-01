@@ -460,12 +460,13 @@
 				</div>	
 			</div>
 			
+			<!-- 내 프로필 -->
 			<div class="my-profile pannel">
 				<div class="image-div">
-					<img class="my-profile-image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" style="cursor:pointer;" onclick="$('#fileInput').click();">
+					<img class="my-profile-image" src="${requestScope.userMap.IMG}" style="cursor:pointer;" onclick="$('#fileInput').click();">
 				</div>
 				<div class="info">
-					<span>고양이</span>
+					<span>${requestScope.userMap.NAME}</span>
 					<span style="font-size:24px; cursor:pointer;" class="menu-outline" onclick="menu()">
 						<ion-icon name="menu-outline"></ion-icon>
 					</span>

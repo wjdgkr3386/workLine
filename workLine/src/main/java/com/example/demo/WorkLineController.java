@@ -1,9 +1,11 @@
 package com.example.demo;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,31 +13,30 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class WorkLineController {
 
-    private final WorkLineProcController workLineProcController;
-
-    WorkLineController(WorkLineProcController workLineProcController) {
-        this.workLineProcController = workLineProcController;
+	@Autowired
+	WorkLineDAO workLineDAO;
+	
+	
+    @RequestMapping(value = "/workLine")
+    public ModelAndView workLine(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        String uuid = (String) session.getAttribute("uuid");
+        
+        if (uuid == null) {
+            mav.setViewName("redirect:/login");
+        } else {
+        	System.out.println(1);
+            Map<String,Object> userMap = workLineDAO.getUser(uuid);
+        	System.out.println(userMap);
+            mav.setViewName("workLine");
+        	System.out.println(2);
+            mav.addObject("userMap", userMap);
+        	System.out.println(3);
+        }
+        return mav;
     }
 
-	@RequestMapping( value="/workLine")
-	public ModelAndView workLine(
-		HttpServletRequest request,
-		HttpServletResponse response 
-	){
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();  
-		String uuid = (String)session.getAttribute("uuid");
-		try {
-			if(uuid==null) {
-				response.sendRedirect( "/login" );
-			}else {
-				mav.setViewName( "workLine" );
-			}
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		return mav;
-    }
 
 
 	@RequestMapping( value="/login")
@@ -50,7 +51,9 @@ public class WorkLineController {
 
 	@RequestMapping( value="/signup")
 	public ModelAndView signup(
+		HttpSession session
 	){
+		session.removeAttribute("uuid");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName( "signup" );
 		return mav;

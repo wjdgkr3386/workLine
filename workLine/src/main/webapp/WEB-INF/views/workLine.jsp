@@ -13,7 +13,7 @@
 	body{
 	    margin: 0;
 	    padding: 0;
-	    overflow-x: hidden;
+	    overflow: hidden;
 	    position: relative;
 	}
 	
@@ -307,17 +307,11 @@
         }
 		
 		ajax(
-			     "/loginProc",
+			     "/saveChatProc",
 			     "post",
 			     formObj,
 			     function (cnt) {
-			    	 if(cnt == 1){
-			    		 location.replace("workLine");
-			    	 }else if(cnt == 0){
-			    		 alert("비밀번호가 틀립니다.");
-			    	 }else{
-			    		 alert("실패했습니다. 관리자에게 문의해주세요.");
-			    	 }
+			    	 
 			     }
 			);
 	}
@@ -372,10 +366,10 @@
 	}
 	
 	function selectBnt(n) {
-	    if (n === 1) { // '=='보다 '===' 사용을 권장합니다.
+	    if (n === 1) {
 	        $("#toolFriend").removeClass('btn-select');
 	        $("#toolChat").addClass('btn-select');
-	    } else if (n === 2) { // else if를 사용하여 명확하게 만듭니다.
+	    } else if (n === 2) {
 	        $("#toolChat").removeClass('btn-select');
 	        $("#toolFriend").addClass('btn-select');
 	    }
@@ -439,36 +433,38 @@
 <body>
 	<div id="main-container">
 		<div class="user-container">
+			<div class="toolbar">
+				<span>
+					<span class="btn btn-select" id="toolChat" onclick="selectBnt(1)">채팅</span>
+					<span class="btn" id="toolFriend" onclick="selectBnt(2)">친구</span>
+				</span>
+				<span style="display:flex; gap:15px;">
+					<i class="fi fi-rr-search" title="검색"></i>
+					<i class="fi fi-rr-comments" title="새로운 채팅" onclick="newchat()"></i>
+				</span>
+			</div>	
 			<div class="user-list">
-				<div class="toolbar">
-					<span>
-						<span class="btn btn-select" id="toolChat" onclick="selectBnt(1)">채팅</span>
-						<span class="btn" id="toolFriend" onclick="selectBnt(2)">친구</span>
-					</span>
-					<span style="display:flex; gap:15px;">
-						<i class="fi fi-rr-search" title="검색"></i>
-						<i class="fi fi-rr-comments" title="새로운 채팅" onclick="newchat()"></i>
-					</span>
-				</div>			
 				<!-- 반복할 유저 목록 -->
-				<div class="pannel">
-					<div class="image-div">
-						<input type="file" id="fileInput" name="img" style="display:none;">
-						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg" >
+				<c:forEach var="i" items="${friendMapList}">
+					<div class="pannel">
+						<div class="image-div">
+							<img src="${i.IMG}">
+						</div>
+						<div class="info">
+							${i.NAME}
+						</div>
 					</div>
-					<div class="info">
-						고양이
-					</div>
-				</div>	
+				</c:forEach>
 			</div>
 			
 			<!-- 내 프로필 -->
 			<div class="my-profile pannel">
 				<div class="image-div">
-					<img class="my-profile-image" src="${requestScope.userMap.IMG}" style="cursor:pointer;" onclick="$('#fileInput').click();">
+					<img class="my-profile-image" src="${requestScope.myInfoMap.IMG}" style="cursor:pointer;" onclick="$('#fileInput').click();">
+					<input type="file" id="fileInput" name="img" style="display:none;">
 				</div>
 				<div class="info">
-					<span>${requestScope.userMap.NAME}</span>
+					<span>${requestScope.myInfoMap.NAME}</span>
 					<span style="font-size:24px; cursor:pointer;" class="menu-outline" onclick="menu()">
 						<ion-icon name="menu-outline"></ion-icon>
 					</span>

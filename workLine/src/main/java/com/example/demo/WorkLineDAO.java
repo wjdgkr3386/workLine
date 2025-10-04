@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -15,8 +16,11 @@ public interface WorkLineDAO {
 	//로그인
 	int login(WorkLineDTO workLineDTO);
 	String getUuid(WorkLineDTO workLineDTO);
+
+	//정보 목록 반환
+	Map<String,Object> getMyInfo(String uuid);
+	List<Map<String,Object>> getFriend(String uuid);
 	
-	Map<String,Object> getUser(String uuid);
 	
 	//채팅
 	int insertChat(WorkLineDTO workLineDTO);

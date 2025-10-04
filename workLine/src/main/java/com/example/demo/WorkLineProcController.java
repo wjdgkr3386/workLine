@@ -69,6 +69,7 @@ public class WorkLineProcController {
 			System.out.println("WorkLineProcController에서 saveChatProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			e.printStackTrace();
+			return -9;
 		}
 		return 0;
 	}

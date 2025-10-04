@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +28,11 @@ public class WorkLineController {
         if (uuid == null) {
             mav.setViewName("redirect:/login");
         } else {
-        	System.out.println(1);
-            Map<String,Object> userMap = workLineDAO.getUser(uuid);
-        	System.out.println(userMap);
+            Map<String,Object> myInfoMap = workLineDAO.getMyInfo(uuid);
+            List<Map<String,Object>> friendMapList = workLineDAO.getFriend(uuid);
             mav.setViewName("workLine");
-        	System.out.println(2);
-            mav.addObject("userMap", userMap);
-        	System.out.println(3);
+            mav.addObject("myInfoMap", myInfoMap);
+            mav.addObject("friendMapList", friendMapList);
         }
         return mav;
     }

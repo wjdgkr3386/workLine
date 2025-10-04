@@ -19,7 +19,7 @@
 		select uuid from member where mid=#{mid} and pwd=#{pwd}
 	</select>
 	
-	<select id="getUser" parameterType="String" resultType="java.util.HashMap">
+	<select id="getMyInfo" parameterType="String" resultType="java.util.HashMap">
 		select
 			uuid as "UUID",
 			name as "NAME",
@@ -31,6 +31,18 @@
 			member
 		where
 			uuid=#{uuid}
+	</select>
+	
+	<select id="getFriend" parameterType="String" resultType="java.util.HashMap">
+		select
+			uuid as "UUID",
+			name as "NAME",
+			phone as "PHONE",
+			img as "IMG"
+		from
+			member
+		where
+			uuid in (select friendCode from friend where uuid=#{uuid})
 	</select>
 	
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
@@ -54,7 +66,7 @@
 	</insert>
 	
  	<insert id="insertChat" parameterType="com.example.demo.WorkLineDTO">
-		insert into 
+		insert into chat_message () values ()
 	</insert>
 	
  	<insert id="insertFriend" parameterType="java.util.HashMap">

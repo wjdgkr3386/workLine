@@ -93,11 +93,15 @@ public class WorkLineProcController {
 
 		int cnt = 0;
 		try {
+			//친구 추가 코드가 이미 있는 계정인지 확인
 			cnt = workLineDAO.checkUuid(uuid);
 			if(cnt!=1) {
 				return cnt;
 			}
-			cnt = workLineDAO
+			//이미 친구 추가가 되어있는지 확인
+			if(workLineDAO.isFriend(map)==1) {
+				return -3;
+			}
 			
 			cnt = workLineService.insertFriend(map);
 			
@@ -106,7 +110,7 @@ public class WorkLineProcController {
 			System.out.println("WorkLineProcController에서 addFriendProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			e.printStackTrace();
-			return -3;
+			return -9;
 		}
 		return cnt;
 	}

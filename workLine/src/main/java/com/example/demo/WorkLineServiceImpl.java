@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,19 +14,17 @@ public class WorkLineServiceImpl implements WorkLineService {
 	WorkLineDAO workLineDAO;
 	
 	public int insertSignup(WorkLineDTO workLineDTO) {
-		int cnt = 0;
-		if(workLineDAO.checkUuid(workLineDTO)>0) return -1;
+		if(workLineDAO.checkUuid(workLineDTO.getUuid())>0) return -1;
 		if(workLineDAO.checkMid(workLineDTO)>0) return -2;
-		
-		cnt = workLineDAO.insertSignup(workLineDTO);
-		
-		return cnt;
+		return workLineDAO.insertSignup(workLineDTO);
 	}
 	
 	
 	public int insertChat(WorkLineDTO workLineDTO) {
-		int cnt = 0;
-		cnt = workLineDAO.insertChat(workLineDTO);
-		return cnt;
+		return workLineDAO.insertChat(workLineDTO);
+	}
+	
+	public int insertFriend(Map<String,Object> map) {
+		return workLineDAO.insertFriend(map);
 	}
 }

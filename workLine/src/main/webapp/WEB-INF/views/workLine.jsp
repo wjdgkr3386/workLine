@@ -406,7 +406,7 @@
 		var inputText = prompt("친구의 코드를 넣어 추가하세요.").trim();
 
 		if (!inputText || typeof inputText !== "string") {
-		    alert("정확한 친구 코드를 입력해주세요");
+		    alert("정확한 친구 코드를 입력해주세요.");
 		    return;
 		}
 		
@@ -419,12 +419,12 @@
 			     function (cnt) {
 			    	 if(cnt == 1){
 			    		 alert("성공");
-			    	 }else if(cnt == -2){
+			    	 }else if(cnt == 0){
 			    		 alert("해당 친구 코드에 해당하는 계정이 없습니다.");
 			    	 }else if(cnt == -1){
 			    		 alert("로그인 해주세요");
-			    	 }else if(cnt == -3){
-			    		 alert("제대로 된 코드를 입력해주세요");
+			    	 }else if(cnt == -2){
+			    		 alert("정확한 친구 코드를 입력해주세요.");
 			    	 }else{
 			    		 alert("알 수 없는 문제 발생! 관리자에게 문의 주세요.");
 			    	 }

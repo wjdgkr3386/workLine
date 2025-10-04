@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface WorkLineDAO {
 
 	//회원가입
-	int checkUuid(WorkLineDTO workLineDTO);
+	int checkUuid(String uuid);
 	int checkMid(WorkLineDTO workLineDTO);
 	int insertSignup(WorkLineDTO workLineDTO);
 	
@@ -23,4 +23,5 @@ public interface WorkLineDAO {
 	
 	//친구추가
 	int isFriend(Map<String,Object> map);
+	int insertFriend(Map<String,Object> map);
 }

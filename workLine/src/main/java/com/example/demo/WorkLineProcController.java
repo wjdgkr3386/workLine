@@ -78,30 +78,37 @@ public class WorkLineProcController {
 		String friendCode,
 		HttpSession session
 	) {
+		//로그인 안되어있으면 리턴
 		String uuid = (String) session.getAttribute("uuid");
 		if(uuid==null) {
 			return -1;
 		}else if(uuid.equals(friendCode)) {
-			return -3;
+			return -2;
 		}
+		
+		//검색에 사용할 데이터
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
-		System.out.println("uuid" + uuid);
-		System.out.println("friendCode" + friendCode);
+
+		int cnt = 0;
 		try {
-			if(workLineDAO.isFriend(map)>0) {
-				return 1;
-			}else {
-				return -2;
+			cnt = workLineDAO.checkUuid(uuid);
+			if(cnt!=1) {
+				return cnt;
 			}
+			cnt = workLineDAO
+			
+			cnt = workLineService.insertFriend(map);
+			
 		}catch(Exception e) {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("WorkLineProcController에서 addFriendProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			e.printStackTrace();
+			return -3;
 		}
-		return 0;
+		return cnt;
 	}
 	
 	

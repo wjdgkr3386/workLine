@@ -61,11 +61,15 @@
 		overflow-y: auto;
 	}
 	
-	.user-container .user-list{
+	.user-container .tab-list{
 		width: 100%;
 		height: 88%;
 		overflow-y: auto;
 		overflow-x: hidden;
+	}
+	
+	.tab-list .pannel:hover{
+		background: #FFF7DD;
 	}
 	
 	.user-container .toolbar{
@@ -93,7 +97,8 @@
 		padding: 10px;
 		width: 80%;
 		height: auto;
-		font-size: 12px;
+		font-size: 14px;
+		font-weight: 450;
 		white-space: nowrap;        /* 한 줄로만 표시 (줄바꿈 X) */
 		overflow: hidden;           /* 박스 넘치는 글자는 안 보이게 */
 		text-overflow: ellipsis;    /* 잘린 부분에 ... 표시 */
@@ -105,10 +110,9 @@
 	
 	.user-container .pannel{
 		display: flex;
-		width: 100%;
-		height: 50px;
-		padding: 3px;
-		box-sizing: border-box;
+		width: calc(100% - 12px);
+		height: 38px;
+		padding: 6px;
 	}
 	
 	.user-container .my-profile{
@@ -428,6 +432,17 @@
 			);
 	}
 	
+	function getChatroom(friendCode){
+ 		$("[name='friendCode']").val(friendCode);
+		var formObj = $("[name='friendForm']");
+		ajax(
+			     "/getChatroomProc",
+			     "post",
+			     formObj,
+			     function (cnt) {
+			     }
+			);
+	} 
 </script>
 </head>
 <body>
@@ -442,11 +457,26 @@
 					<i class="fi fi-rr-search" title="검색"></i>
 					<i class="fi fi-rr-comments" title="새로운 채팅" onclick="newchat()"></i>
 				</span>
-			</div>	
-			<div class="user-list">
-				<!-- 반복할 유저 목록 -->
+			</div>
+			
+			<!-- 반복할 채팅방 목록 -->
+			<div class="tab-list" id="chatroom-list" style="display:none;">
 				<c:forEach var="i" items="${friendMapList}">
 					<div class="pannel">
+						<div class="image-div">
+							<img src="${i.IMG}">
+						</div>
+						<div class="info">
+							${i.NAME}
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<!-- 반복할 친구 목록 -->
+			<div class="tab-list" id="friend-list">
+				<c:forEach var="i" items="${friendMapList}">
+					<div class="pannel" onclick="getChatroom('${i.FRIENDCODE}')">
 						<div class="image-div">
 							<img src="${i.IMG}">
 						</div>
@@ -499,7 +529,7 @@
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
-				<input type="text" name="content" class="chat-input" placeholder="메시지 입력">
+				<input type="text" name="content" class="chat-input" placeholder="메시지 입력" onclick="pushMessage()">
 			</form>
 		</div>
 	</div>
@@ -507,7 +537,7 @@
 	<div class="menu-modal">
 	    <div class="menu">
 			<div onclick="clipboard()">내 고유 코드</div>
-			<div onclick="searchFriend()">친구 검색</div>
+			<div onclick="searchFriend()">친구 추가</div>
 			<div>설정</div>
 			<div onclick="location.href='/login'">로그아웃</div>
 	    </div>

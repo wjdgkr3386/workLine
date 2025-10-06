@@ -9,4 +9,6 @@ public interface WorkLineService {
 	int insertChat(WorkLineDTO workLineDTO) throws Exception;
 	
 	int insertFriend(Map<String,Object> map) throws Exception;
+	
+	int insertChatRoomDirect(Map<String,Object> map) throws Exception;
 }

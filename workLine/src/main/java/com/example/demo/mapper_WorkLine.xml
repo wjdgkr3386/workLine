@@ -35,7 +35,7 @@
 	
 	<select id="getFriend" parameterType="String" resultType="java.util.HashMap">
 		select
-			uuid as "UUID",
+			uuid as "FRIENDCODE",
 			name as "NAME",
 			phone as "PHONE",
 			img as "IMG"
@@ -43,6 +43,10 @@
 			member
 		where
 			uuid in (select friendCode from friend where uuid=#{uuid})
+	</select>
+	
+	<select id="checkChatRoomDirect" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from chat_room where uuid=#{uuid} and friendCode=#{friendCode}
 	</select>
 	
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
@@ -72,5 +76,10 @@
  	<insert id="insertFriend" parameterType="java.util.HashMap">
 		insert into friend (uuid, friendCode) values (#{uuid}, #{friendCode})
 	</insert>
+	
+ 	<insert id="insertChatRoomDirect" parameterType="java.util.HashMap">
+		insert into friend (uuid, friendCode) values (#{uuid}, #{friendCode})
+	</insert>
+	
 	
 </mapper>

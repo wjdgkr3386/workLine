@@ -21,11 +21,14 @@ public interface WorkLineDAO {
 	Map<String,Object> getMyInfo(String uuid);
 	List<Map<String,Object>> getFriend(String uuid);
 	
-	
 	//채팅
 	int insertChat(WorkLineDTO workLineDTO);
 	
 	//친구추가
 	int isFriend(Map<String,Object> map);
 	int insertFriend(Map<String,Object> map);
+	
+	//1:1채팅방
+	int checkChatRoomDirect(Map<String,Object> map);
+	int insertChatRoomDirect(Map<String,Object> map);
 }

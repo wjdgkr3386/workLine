@@ -20,6 +20,12 @@ create table chat_room (
     member_uuid  varchar(100) not null      -- 참여자
 );
 
+#1:1 채팅방
+create table chat_room_direct(
+	uuid	varchar(100)	not null,
+    friendCode	varchar(100)	not null
+);
+
 #채팅
 create table chat_message (
     room_id      varchar(200) not null,                   -- 채팅방 고유 번호

@@ -24,16 +24,13 @@ public class WorkLineController {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         String uuid = (String) session.getAttribute("uuid");
-        
-        if (uuid == null) {
-            mav.setViewName("redirect:/login");
-        } else {
-            Map<String,Object> myInfoMap = workLineDAO.getMyInfo(uuid);
-            List<Map<String,Object>> friendMapList = workLineDAO.getFriend(uuid);
-            mav.setViewName("workLine");
-            mav.addObject("myInfoMap", myInfoMap);
-            mav.addObject("friendMapList", friendMapList);
-        }
+
+        Map<String,Object> myInfoMap = workLineDAO.getMyInfo(uuid);
+        List<Map<String,Object>> friendMapList = workLineDAO.getFriend(uuid);
+        mav.setViewName("workLine");
+        mav.addObject("myInfoMap", myInfoMap);
+        mav.addObject("friendMapList", friendMapList);
+
         return mav;
     }
 

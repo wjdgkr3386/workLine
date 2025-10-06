@@ -27,4 +27,8 @@ public class WorkLineServiceImpl implements WorkLineService {
 	public int insertFriend(Map<String,Object> map) {
 		return workLineDAO.insertFriend(map);
 	}
+	
+	public int insertChatRoomDirect(Map<String,Object> map) {
+		return workLineDAO.insertChatRoomDirect(map);
+	}
 }

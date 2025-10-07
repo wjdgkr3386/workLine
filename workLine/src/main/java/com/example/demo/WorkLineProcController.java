@@ -117,7 +117,7 @@ public class WorkLineProcController {
 	}
 	
 	
-	public Map<String,Object> getChatroomProc(
+	public int getChatroomProc(
 		HttpSession session,
 		String friendCode
 	){
@@ -126,15 +126,18 @@ public class WorkLineProcController {
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
 		
-		if(workLineDAO.checkChatRoomDirect(map)>0) {
+		int cnt = 0;
+		if(workLineDAO.checkChatRoomDirect(map)==0) {
 			try {
-				workLineService.insertChatRoomDirect(map);
+				cnt=workLineService.insertChatRoomDirect(map);
 			}catch(Exception e) {
 				System.out.println(e);
 			}
+		}else {
+			cnt=-1;
 		}
 
-		return map;
+		return cnt;
 	}
 	
 }

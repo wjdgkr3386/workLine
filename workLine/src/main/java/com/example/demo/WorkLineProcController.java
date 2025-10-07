@@ -116,25 +116,27 @@ public class WorkLineProcController {
 		return cnt;
 	}
 	
-	
+
+	@RequestMapping(value="/getChatroomProc")
 	public int getChatroomProc(
 		HttpSession session,
 		String friendCode
 	){
+		System.out.println(1111);
 		String uuid = (String)session.getAttribute("uuid");
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
 		
 		int cnt = 0;
+		//1:1 채팅방 있으면 cnt=0,  없으면 생성하고 cnt=1,  오류뜨면 cnt=-1
 		if(workLineDAO.checkChatRoomDirect(map)==0) {
 			try {
 				cnt=workLineService.insertChatRoomDirect(map);
 			}catch(Exception e) {
 				System.out.println(e);
+				cnt = -1;
 			}
-		}else {
-			cnt=-1;
 		}
 
 		return cnt;

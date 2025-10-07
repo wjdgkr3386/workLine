@@ -46,11 +46,11 @@
 	</select>
 	
 	<select id="checkChatRoomDirect" parameterType="java.util.HashMap" resultType="int">
-		select count(*) from chat_room where uuid=#{uuid} and friendCode=#{friendCode}
+		select count(*) from chat_room_direct where uuid=#{uuid} and friendCode=#{friendCode}
 	</select>
 	
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
-		select count(*) from member where uuid=#{friendCode}
+		select count(*) from friend where uuid=#{friendCode}
 	</select>
 
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">
@@ -78,7 +78,7 @@
 	</insert>
 	
  	<insert id="insertChatRoomDirect" parameterType="java.util.HashMap">
-		insert into friend (uuid, friendCode) values (#{uuid}, #{friendCode})
+		insert into chat_room_direct (uuid, friendCode) values (#{uuid}, #{friendCode})
 	</insert>
 	
 	

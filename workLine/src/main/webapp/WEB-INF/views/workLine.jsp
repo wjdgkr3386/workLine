@@ -440,6 +440,13 @@
 			     "post",
 			     formObj,
 			     function (cnt) {
+			    	 if(cnt==0){
+			    		 alert("이미 있음");
+			    	 }else if(cnt==1){
+			    		 alert("생성함");
+			    	 }else if(cnt==-1){
+			    		 alert("에러뜸");
+			    	 }
 			     }
 			);
 	} 

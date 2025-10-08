@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,11 +98,11 @@ public class WorkLineProcController {
 		try {
 			//친구 추가 코드가 이미 있는 계정인지 확인
 			cnt = workLineDAO.checkUuid(uuid);
-			if(cnt!=1) {
+			if(cnt==0) {
 				return cnt;
 			}
 			//이미 친구 추가가 되어있는지 확인
-			if(workLineDAO.isFriend(map)==1) {
+			if(workLineDAO.isFriend(map)>0) {
 				return -3;
 			}
 			
@@ -117,32 +118,37 @@ public class WorkLineProcController {
 		return cnt;
 	}
 	
-
 	@RequestMapping(value="/getChatroomDirectProc")
-	public int getChatroomDirectProc(
+	public Map<String,Object> getChatroomDirectProc(
 		HttpSession session,
 		String friendCode
 	){
-		System.out.println(1111);
+		int status = 0;
 		String uuid = (String)session.getAttribute("uuid");
 		Map<String, Object> map = new HashMap<String,Object>();
+		Map<String, Object> response = new HashMap<String, Object>();
+		List<Map<String,Object>> chatList = new ArrayList<Map<String,Object>>();
+		
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
-		
-		int status = 0;
+
 		//1:1 채팅방 있으면 status=0,  없으면 생성하고 status=1,  오류뜨면 status=-1
 		if(workLineDAO.checkChatRoomDirect(map)==0) {
 			try {
-				status=workLineService.insertChatRoomDirect(map);
+				map.put("room_id", Util.rCode(17));
+				status = workLineService.insertChatRoomDirect(map)>0 ? 1 : 0;
 			}catch(Exception e) {
 				System.out.println(e);
 				status = -1;
 			}
 		}else {
-			List<Map<String,Object>> chatList = workLineDAO.getChatRoomDirect(map);
+			chatList = workLineDAO.getChatRoomDirect(map);
+			status = 2;
 		}
 
-		return status;
+		response.put("chatList", chatList);
+		response.put("status", status);
+		return response;
 	}
 	
 }

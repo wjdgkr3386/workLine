@@ -46,15 +46,48 @@
 	</select>
 	
 	<select id="checkChatRoomDirect" parameterType="java.util.HashMap" resultType="int">
-		select count(*) from chat_room_direct where uuid=#{uuid} and friendCode=#{friendCode}
+		select count(*) from (
+				select
+					room_id
+				from
+					chat_room_direct
+				where
+					member_uuid in (#{uuid}, #{friendCode})
+				group by
+					room_id
+				having
+					count(*) = 2
+			) t
 	</select>
 	
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
-		select count(*) from friend where uuid=#{friendCode}
+		select count(*) from friend where uuid=#{uuid} and friendCode=#{friendCode}
 	</select>
 	
 	<select id="getChatRoomDirect" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select 
+		select
+			cdm.room_id,
+			cdm.member_uuid,
+			cdm.content,
+			cdm.chat_id,
+			cdm.create_date
+		from
+			chat_direct_message cdm
+		where
+			cdm.room_id = (
+						select
+							crd.room_id
+						from
+							chat_room_direct crd
+						where
+							crd.member_uuid in (#{uuid}, #{friendCode})
+						group by
+							crd.room_id
+						having
+							count(crd.room_id)=2
+					)
+		order by
+			cdm.chat_id asc
 	</select>
 
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">
@@ -82,7 +115,8 @@
 	</insert>
 	
  	<insert id="insertChatRoomDirect" parameterType="java.util.HashMap">
-		insert into chat_room_direct (uuid, friendCode) values (#{uuid}, #{friendCode})
+		insert into chat_room_direct (room_id, member_uuid) values 	(#{room_id}, #{uuid}),
+																	(#{room_id}, #{friendCode})
 	</insert>
 	
 	

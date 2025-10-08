@@ -13,8 +13,8 @@ public class MyConfig implements WebMvcConfigurer{
             .excludePathPatterns(   //인터셉터 하지않을 경로
                 "/login"
                 ,"/loginProc"
-                ,"signup"
-                ,"signupProc"
+                ,"/signup"
+                ,"/signupProc"
                 ,"/js/**"
                 ,"/css/**"
         );

@@ -31,5 +31,5 @@ public interface WorkLineDAO {
 	//1:1채팅방
 	int checkChatRoomDirect(Map<String,Object> map);
 	int insertChatRoomDirect(Map<String,Object> map);
-	List<Map<String,Object>> chatList(Map<String,Object> map);
+	List<Map<String,Object>> getChatRoomDirect(Map<String,Object> map);
 }

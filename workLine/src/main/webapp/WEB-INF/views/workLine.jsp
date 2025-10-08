@@ -432,21 +432,15 @@
 			);
 	}
 	
-	function getChatroomDirectProc(friendCode){
+	function getChatroomDirect(friendCode){
  		$("[name='friendCode']").val(friendCode);
 		var formObj = $("[name='friendForm']");
 		ajax(
 			     "/getChatroomDirectProc",
 			     "post",
 			     formObj,
-			     function (cnt) {
-			    	 if(cnt==0){
-			    		 alert("이미 있음");
-			    	 }else if(cnt==1){
-			    		 alert("생성함");
-			    	 }else if(cnt==-1){
-			    		 alert("에러 뜸");
-			    	 }
+			     function (response) {
+			    	 console.log(response);
 			     }
 			);
 	} 
@@ -483,7 +477,7 @@
 			<!-- 반복할 친구 목록 -->
 			<div class="tab-list" id="friend-list">
 				<c:forEach var="i" items="${friendMapList}">
-					<div class="pannel" onclick="getChatroom('${i.FRIENDCODE}')">
+					<div class="pannel" onclick="getChatroomDirect('${i.FRIENDCODE}')">
 						<div class="image-div">
 							<img src="${i.IMG}">
 						</div>

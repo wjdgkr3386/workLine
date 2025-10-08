@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -117,8 +118,8 @@ public class WorkLineProcController {
 	}
 	
 
-	@RequestMapping(value="/getChatroomProc")
-	public int getChatroomProc(
+	@RequestMapping(value="/getChatroomDirectProc")
+	public int getChatroomDirectProc(
 		HttpSession session,
 		String friendCode
 	){
@@ -128,18 +129,20 @@ public class WorkLineProcController {
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
 		
-		int cnt = 0;
-		//1:1 채팅방 있으면 cnt=0,  없으면 생성하고 cnt=1,  오류뜨면 cnt=-1
+		int status = 0;
+		//1:1 채팅방 있으면 status=0,  없으면 생성하고 status=1,  오류뜨면 status=-1
 		if(workLineDAO.checkChatRoomDirect(map)==0) {
 			try {
-				cnt=workLineService.insertChatRoomDirect(map);
+				status=workLineService.insertChatRoomDirect(map);
 			}catch(Exception e) {
 				System.out.println(e);
-				cnt = -1;
+				status = -1;
 			}
+		}else {
+			List<Map<String,Object>> chatList = workLineDAO.getChatRoomDirect(map);
 		}
 
-		return cnt;
+		return status;
 	}
 	
 }

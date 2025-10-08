@@ -432,11 +432,11 @@
 			);
 	}
 	
-	function getChatroom(friendCode){
+	function getChatroomDirectProc(friendCode){
  		$("[name='friendCode']").val(friendCode);
 		var formObj = $("[name='friendForm']");
 		ajax(
-			     "/getChatroomProc",
+			     "/getChatroomDirectProc",
 			     "post",
 			     formObj,
 			     function (cnt) {
@@ -445,7 +445,7 @@
 			    	 }else if(cnt==1){
 			    		 alert("생성함");
 			    	 }else if(cnt==-1){
-			    		 alert("에러뜸");
+			    		 alert("에러 뜸");
 			    	 }
 			     }
 			);

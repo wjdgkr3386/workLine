@@ -52,6 +52,10 @@
 	<select id="isFriend" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from friend where uuid=#{friendCode}
 	</select>
+	
+	<select id="getChatRoomDirect" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select 
+	</select>
 
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">
 		insert into member (

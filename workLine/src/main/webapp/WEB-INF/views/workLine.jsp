@@ -509,6 +509,28 @@
 			<div class="chat-list">
 				
 				<c:forEach var="i" items="${chatList}">
+				
+					<c:choose>
+					    <c:when test="${i.MEMBER_UUID eq uuid}">
+					    
+							<!-- 내 채팅 -->
+							<div class="chat-row me">
+								<span class="time">${i.CREATE_DATE}</span>
+								<div class="chat-me chat">{i.CONTENT}</div>
+							</div>
+							
+					    </c:when>
+					    <c:when test="조건">
+					        실행2
+					    </c:when>
+					    <c:otherwise><!--조건에 맞지 않으면-->
+					        else실행
+					    </c:otherwise>
+					</c:choose>
+				
+				
+				
+				
 					<!-- 상대방 채팅 -->
 					<div class="chat-you-box">
 						<div class="image-div">
@@ -535,11 +557,7 @@
 					</div>
 					-->
 						
-					<!-- 내 채팅 -->
-					<div class="chat-row me">
-						<span class="time">오후 9시</span>
-						<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-					</div>
+
 				</c:forEach>
 			</div>
 			

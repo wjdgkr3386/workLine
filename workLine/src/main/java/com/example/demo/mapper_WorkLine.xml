@@ -70,24 +70,27 @@
 			cdm.member_uuid as "MEMBER_UUID",
 			cdm.content as "CONTENT",
 			cdm.chat_id as "CHAT_ID",
-			cdm.create_date as "CREATE_DATE"
+			cdm.create_date as "CREATE_DATE",
+			mb.img as "IMG"
 		from
 			chat_direct_message cdm
-		where
-			cdm.room_id = (
-						select
-							crd.room_id
-						from
-							chat_room_direct crd
-						where
-							crd.member_uuid in (#{uuid}, #{friendCode})
-						group by
-							crd.room_id
-						having
-							count(crd.room_id)=2
-					)
+		join member mb
+			on cdm.member_uuid = mb.uuid
+		join (
+			select
+				crd.room_id
+			from
+				chat_room_direct crd
+			where
+				crd.member_uuid in (#{uuid}, #{friendCode})
+			group by
+				crd.room_id
+			having
+				count(crd.room_id)=2
+		) room_table
+			on cdm.room_id = room_table.room_id
 		order by
-			cdm.chat_id asc
+			cdm.chat_id asc;
 	</select>
 
 	<insert id="insertSignup" parameterType="com.example.demo.WorkLineDTO">

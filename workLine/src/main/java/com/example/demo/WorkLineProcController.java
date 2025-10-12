@@ -148,6 +148,7 @@ public class WorkLineProcController {
 
 		response.put("chatList", chatList);
 		response.put("status", status);
+		response.put("uuid", uuid);
 		return response;
 	}
 	

@@ -66,11 +66,11 @@
 	
 	<select id="getChatRoomDirect" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select
-			cdm.room_id,
-			cdm.member_uuid,
-			cdm.content,
-			cdm.chat_id,
-			cdm.create_date
+			cdm.room_id as "ROOM_ID",
+			cdm.member_uuid as "MEMBER_UUID",
+			cdm.content as "CONTENT",
+			cdm.chat_id as "CHAT_ID",
+			cdm.create_date as "CREATE_DATE"
 		from
 			chat_direct_message cdm
 		where

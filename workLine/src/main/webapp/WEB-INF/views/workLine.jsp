@@ -504,37 +504,54 @@
 				
 		</div>
 			
-			<!-- 채팅공간 -->
+		<!-- 채팅공간 -->
 		<div class="chat-container">
 			<div class="chat-list">
-				<!-- 상대방 채팅 -->
-				<div class="chat-you-box">
-					<div class="image-div">
-						<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
-					</div>
-					<div style="width:100%;">
-						<span class="name">이름</span>
-						<div class="chat-row">
-							<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-							<span class="time">오전 9시</span>
+				
+				<c:forEach var="i" items="${chatList}">
+					<!-- 상대방 채팅 -->
+					<div class="chat-you-box">
+						<div class="image-div">
+							<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
+						</div>
+						<div style="width:100%;">
+							<span class="name">이름</span>
+							<div class="chat-row">
+								<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+								<span class="time">오전 9시</span>
+							</div>
 						</div>
 					</div>
-				</div>		
 					
-				<!-- 내 채팅 -->
-				<div class="chat-row me">
-					<span class="time">오후 9시</span>
-					<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-				</div>
-			</div> <!-- 채팅공간 끝 -->
+					<!-- 두번째 채팅부터
+					<div class="chat-you-box">
+						<div style="width:60px; display:flex;"></div>
+						<div style="width:100%;">
+							<div class="chat-row">
+								<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+								<span class="time">오전 9시</span>
+							</div>
+						</div>
+					</div>
+					-->
+						
+					<!-- 내 채팅 -->
+					<div class="chat-row me">
+						<span class="time">오후 9시</span>
+						<div class="chat-me chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+					</div>
+				</c:forEach>
+			</div>
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
 				<input type="text" name="content" class="chat-input" placeholder="메시지 입력" onclick="pushMessage()">
 			</form>
-		</div>
-	</div>
+		</div><!-- 채팅공간 끝 -->
+	</div><!-- main-container 끝 -->
 	
+	
+	<!-- 안보이는 데이터 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="menu-modal">
 	    <div class="menu">
 			<div onclick="clipboard()">내 고유 코드</div>

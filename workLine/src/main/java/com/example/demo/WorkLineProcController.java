@@ -132,18 +132,18 @@ public class WorkLineProcController {
 		map.put("uuid", uuid);
 		map.put("friendCode", friendCode);
 
-		//1:1 채팅방 있으면 status=0,  없으면 생성하고 status=1,  오류뜨면 status=-1
-		if(workLineDAO.checkChatRoomDirect(map)==0) {
+		//1:1 채팅방 있으면 status=1,  없으면 생성하고 status=2,  오류뜨면 status=-1
+		if(workLineDAO.checkChatRoomDirect(map)>0) {
+			chatList = workLineDAO.getChatRoomDirect(map);
+			status = 1;
+		}else {
 			try {
 				map.put("room_id", Util.rCode(17));
-				status = workLineService.insertChatRoomDirect(map)>0 ? 1 : 0;
+				status = workLineService.insertChatRoomDirect(map)>0 ? 2 : 0;
 			}catch(Exception e) {
 				System.out.println(e);
 				status = -1;
 			}
-		}else {
-			chatList = workLineDAO.getChatRoomDirect(map);
-			status = 2;
 		}
 
 		response.put("chatList", chatList);

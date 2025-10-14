@@ -440,7 +440,50 @@
 			     "post",
 			     formObj,
 			     function (response) {
-			    	 console.log(response);
+			         const chatList = response.chatList;
+			         const myUuid = response.uuid;
+			         let prevUuid = "";
+			    	 
+			    	 chatList.forEach(i => {
+						if (i.MEMBER_UUID === myUuid) {
+							// 내 채팅
+							$("#chat-list").append(`
+							    <div class="chat-row me">
+							        <span class="time">${i.CREATE_DATE}</span>
+							        <div class="chat-me chat">${i.CONTENT}</div>
+							    </div>
+							`);
+						} else if(i.MEMBER_UUID === prevUuid){
+							// 같은 사람 채팅
+							$("#chat-list").append(`
+							    <div class="chat-you-box">
+							        <div class="image-div">
+							            <img src="${i.IMG}">
+							        </div>
+							        <div style="width:100%;">
+							            <span class="name">${i.NAME}</span>
+							            <div class="chat-row">
+							                <div class="chat-you chat">${i.CONTENT}</div>
+							                <span class="time">${i.CREATE_DATE}</span>
+							            </div>
+							        </div>
+							    </div>
+							`);
+						} else{
+							// 다른 사람 채팅
+							$("#chat-list").append(`
+								<div class="chat-you-box">
+									<div style="width:60px; display:flex;"></div>
+									<div style="width:100%;">
+										<div class="chat-row">
+											<div class="chat-you chat">${i.CONTENT}</div>
+											<span class="time">${i.CREATE_DATE}</span>
+										</div>
+									</div>
+								</div>
+			                 `);
+			             }
+			         });
 			     }
 			);
 	} 
@@ -506,59 +549,7 @@
 			
 		<!-- 채팅공간 -->
 		<div class="chat-container">
-			<div class="chat-list">
-				
-				<c:forEach var="i" items="${chatList}">
-				
-					<c:choose>
-					    <c:when test="${i.MEMBER_UUID eq uuid}">
-					    
-							<!-- 내 채팅 -->
-							<div class="chat-row me">
-								<span class="time">${i.CREATE_DATE}</span>
-								<div class="chat-me chat">{i.CONTENT}</div>
-							</div>
-							
-					    </c:when>
-					    <c:when test="조건">
-					        실행2
-					    </c:when>
-					    <c:otherwise><!--조건에 맞지 않으면-->
-					        else실행
-					    </c:otherwise>
-					</c:choose>
-				
-				
-				
-				
-					<!-- 상대방 채팅 -->
-					<div class="chat-you-box">
-						<div class="image-div">
-							<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTsN1nJc-HPt3I659Bq0tb_p30Hpa3jZDNIvFxWSx0LTWIYxjGo78l3z70jF2o4k32xHTZfqv33wOJQgubqQkKCcvnW1yNb5wAW4LJBLHFUDg">
-						</div>
-						<div style="width:100%;">
-							<span class="name">이름</span>
-							<div class="chat-row">
-								<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-								<span class="time">오전 9시</span>
-							</div>
-						</div>
-					</div>
-					
-					<!-- 두번째 채팅부터
-					<div class="chat-you-box">
-						<div style="width:60px; display:flex;"></div>
-						<div style="width:100%;">
-							<div class="chat-row">
-								<div class="chat-you chat">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-								<span class="time">오전 9시</span>
-							</div>
-						</div>
-					</div>
-					-->
-						
-
-				</c:forEach>
+			<div class="chat-list" id="chat-list">
 			</div>
 			
 			<!-- 채팅창 -->

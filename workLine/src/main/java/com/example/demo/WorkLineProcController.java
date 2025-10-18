@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,20 +61,25 @@ public class WorkLineProcController {
 	}
 
 	@RequestMapping(value="/saveChatProc")
-	public int saveChatProc(
+	public Map<String, Object> saveChatProc(
 		WorkLineDTO workLineDTO,
 		HttpSession session
 	) {
+		Map<String, Object> map = new HashMap<String,Object>();
 		try {
 			workLineService.insertChat(workLineDTO);
+			LocalDateTime now = LocalDateTime.now();
+			map.put("time", now.getHour() + ":" + now.getMinute());
+			map.put("status", 1);
 		}catch(Exception e) {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("WorkLineProcController에서 saveChatProc를 실행하다가 오류가 생겼습니다.");
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			e.printStackTrace();
-			return -9;
+			map.put("status", -1);
+			return map;
 		}
-		return 0;
+		return map;
 	}
 
 	@RequestMapping(value="/addFriendProc")

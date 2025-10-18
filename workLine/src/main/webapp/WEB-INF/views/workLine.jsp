@@ -189,6 +189,26 @@
 		height: 50px;
 		width: 100%;
 		display: flex;
+		border-right: none;
+		padding: 0 50px 0 0;
+	}
+	
+	.input-wrapper{
+		display: flex;
+		position: relative;
+	}
+	
+	.send-button{
+		position: absolute;
+	    top: 50%;
+	    right: 5px;
+	    transform: translateY(-50%);
+	    color: #4CAF50;
+	    font-size: 24px;
+	    cursor: pointer;
+	    padding: 5px;
+	    display: flex;
+	    align-items: center;
 	}
 	
 	.fi{
@@ -299,6 +319,15 @@
 				reader.readAsDataURL(file);
 			}
 		});
+		
+		//엔터를 눌렀을때 폼 제출 방지
+		$("[name='chatForm'] input[name='content']").on('keydown', function(event) {
+		    if (event.key === 'Enter') {
+		        //폼 제출 방지
+		        event.preventDefault();
+		        saveChat();
+		    }
+		});
 	}
 
 	function saveChat(){
@@ -306,7 +335,7 @@
 		var content = formObj.find("input[name='content']").val().trim();
 		
 		//값이 들어있는지 확인
-        if (content) {
+        if (!content) {
             return;
         }
 		
@@ -314,8 +343,15 @@
 			     "/saveChatProc",
 			     "post",
 			     formObj,
-			     function (cnt) {
-			    	 
+			     function (response) {
+			    	 if(response.status === 1){
+						$("#chat-list").append(`
+							    <div class="chat-row me">
+							        <span class="time">response.time</span>
+							        <div class="chat-me chat">content</div>
+							    </div>
+							`);
+			    	 }
 			     }
 			);
 	}
@@ -554,8 +590,15 @@
 			
 			<!-- 채팅창 -->
 			<form name="chatForm">
-				<input type="text" name="content" class="chat-input" placeholder="메시지 입력" onclick="pushMessage()">
+				<div class="input-wrapper">
+				    <input type="text" name="content" class="chat-input" placeholder="메시지 입력">
+				    <span class="send-button" onclick="saveChat()">
+				        <ion-icon name="send" class="send-button"></ion-icon>
+				    </span>
+			    </div>
 			</form>
+			
+			
 		</div><!-- 채팅공간 끝 -->
 	</div><!-- main-container 끝 -->
 	

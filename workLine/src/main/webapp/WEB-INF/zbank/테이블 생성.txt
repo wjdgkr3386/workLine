@@ -4,48 +4,40 @@ CREATE DATABASE work_line DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 #데이터베이스 선택
 use work_line;
 
-#회원 테이블 생성
-create table member(                
-    uuid    varchar(100)   primary key,
-    name    varchar(20)    not null,
-    mid     varchar(30)    unique,
-    pwd     varchar(40)    not null,
-    phone   varchar(22)    not null,
-    img		varchar(500)   default 'https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo'
+create table member(
+	id				int				auto_increment primary key,
+	mid				varchar(50)		unique,
+    pwd				varchar(200)	not null,
+    username		varchar(20)		not null,
+    phone			varchar(12)		not null,
+    email			varchar(50)		not null,
+    nickname		varchar(20)		null,
+    img				varchar(50)		default '/static/img/user_profile.png',
+    is_deleted		char(1)			default 'n',
+    created_date	timestamp		default now()
 );
 
-#채팅방
-create table chat_room (
-    room_id      varchar(200) not null,  	-- 채팅방 고유 번호
-    member_uuid  varchar(100) not null      -- 참여자
+create table chatroom(
+	room_id			int				auto_increment	primary key,
+    room_type		int				not null,
+    room_name		varchar(100)	null,
+    create_date		timestamp		default	now()
 );
 
-#채팅
-create table chat_message (
-    room_id      varchar(200) not null,                      -- 채팅방 고유 번호
-    member_uuid  varchar(100) not null,                      -- 참여자
-    content		 longtext     not null,				         -- 채팅 내용
-    chat_id		 bigint       not null,   					 -- 채팅 번호
-    create_date  timestamp    default current_timestamp      -- 시간
+create table chatroom_member(
+	room_id			int			null,
+    member_id		int			null,
+    primary key(room_id,member_id),
+    foreign key(room_id) references chatroom(room_id),
+    foreign key(member_id) references member(id)
 );
 
-#1:1 채팅방
-create table chat_room_direct(
-	room_id		varchar(100)	not null,     -- 채팅방 고유 번호
-    member_uuid	varchar(100)	not null      -- 참여자
-);
-
-#1:1 채팅 내역
-create table chat_direct_message(
-	room_id			varchar(200)	not null,                      -- 채팅방 고유 번호
-	member_uuid		varchar(100)	not null,                      -- 참여자
-    content			longtext		not null,				       -- 채팅 내용
-    chat_id			bigint			not null,					   -- 채팅 번호
-    create_date		timestamp		default current_timestamp      -- 시간
-);
-
-#친구
-create table friend (
-    uuid    	varchar(100)	not null,
-    friendCode	varchar(100)	not null
+create table message(
+	message_id		bigint			auto_increment primary key,
+	room_id			int				null,
+    member_id		int				null,
+    content			text			not null,
+    create_date		timestamp		default now(),
+    foreign key(room_id) references chatroom(room_id),
+    foreign key(member_id) references member(id)
 );

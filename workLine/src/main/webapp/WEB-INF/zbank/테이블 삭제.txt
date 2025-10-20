@@ -1,6 +1,4 @@
-drop table if exists chat_message;
-drop table if exists chat_room;
-drop table if exists chat_direct_message;
-drop table if exists chat_room_direct;
-drop table if exists friend;
+drop table if exists message;
+drop table if exists chatroom_member;
+drop table if exists chatroom;
 drop table if exists member;

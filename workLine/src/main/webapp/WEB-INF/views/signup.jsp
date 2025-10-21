@@ -69,7 +69,6 @@ function signup(){
 	    return;
 	}
 	
-	$("[name='uuid']").val(rCode(20));
 	const formObj = $("[name='infoForm']");
 	ajax(
 	     "/signupProc",
@@ -79,8 +78,6 @@ function signup(){
 	    	 if(cnt==1){
 	    		 location.replace("/login");
 	    	 }else if(cnt==-1){
-	    		 signup();
-	    	 }else if(cnt==-2){
 	    		 alert("이미 있는 아이디입니다.");
 	    	 }else{
 	    		 alert("오류가 생겼습니다.\n관리자에게 문의주세요.");
@@ -156,7 +153,7 @@ function isValid() {
 <body>
 <form name="infoForm">
 	<div class="signup-container">
-		<input type="text" class="input-field" name="name" placeholder="이름" maxlength="10">
+		<input type="text" class="input-field" name="username" placeholder="이름" maxlength="10">
 		<input type="text" class="input-field" name="mid" placeholder="아이디" maxlength="10">
 		<input type="password" class="input-field" name="pwd" placeholder="비밀번호" maxlength="20">
 		<input type="password" class="input-field" name="pwdCheck" placeholder="비밀번호 확인" maxlength="12">
@@ -167,12 +164,12 @@ function isValid() {
 			-
 			<input type="text" class="input-phone-field" name="phone3" placeholder="핸드폰 번호" maxlength="4">
 		</div>
+		<input type="email" class="input-field" name="email" placeholder="이메일" maxlength="30">
 		<div class="btn-div">
 			<button type="button" class="signup-btn btn" onclick="signup()">회원가입</button>
 			<button type="button" class="cancle-btn btn" onclick="location.replace('/login')">취소</button>
 		</div>
 	</div>
-	<input type="hidden" name="uuid">
 </form>
 </body>
 </html>

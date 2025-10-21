@@ -52,11 +52,8 @@
 	</div>
 </body>
 <script>
-	$(function(){init();});
-	function init(){
-		$("[name='mid']").val("wjdgkr3386");
-		$("[name='pwd']").val("kjh3765!");
-	}
+	$("[name='mid']").val("wjdgkr3386");
+	$("[name='pwd']").val("kjh3765!");
 
 	//엔터를 눌렀을때 폼 제출 방지
 	$(".input-field").on('keydown', function(event) {
@@ -78,6 +75,8 @@
 			    		 location.replace("workLine");
 			    	 }else if(cnt == 0){
 			    		 alert("비밀번호가 틀립니다.");
+			    	 }else if(cnt == -3){
+			    		 alert("등록된 아이디가 없습니다.");
 			    	 }else{
 			    		 alert("실패했습니다. 관리자에게 문의해주세요.");
 			    	 }

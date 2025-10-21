@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.WorkLineDAO">
+	
+	<select id="getMyInfo" parameterType="java.util.String" resultType="java.util.HashMap">
+		select
+			id as "ID",
+			mid as "MID",
+			pwd as "PWD",
+			username as "USERNAME",
+			phone as "PHONE",
+			email as "EMAIL",
+			nickname as "NICKNAME",
+			img as "IMG",
+			is_deleted as "IS_DELETED",
+			created_date as "CREATED_DATE"
+		from
+			member
+		where
+			mid=#{mid}
+		
+	</select>
+</mapper>

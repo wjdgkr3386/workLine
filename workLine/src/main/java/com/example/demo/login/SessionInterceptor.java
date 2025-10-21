@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +16,9 @@ public class SessionInterceptor   implements HandlerInterceptor  {
     ) throws Exception {
         
         HttpSession session = request.getSession();   
-        String uuid = (String)session.getAttribute("uuid");    
+        String mid = (String)session.getAttribute("mid");    
 
-        if(uuid==null) {    
+        if(mid==null) {    
             response.sendRedirect( "/login" );
             return false;
         }

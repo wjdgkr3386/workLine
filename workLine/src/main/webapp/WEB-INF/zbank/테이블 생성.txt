@@ -17,6 +17,16 @@ create table member(
     created_date	timestamp		default now()
 );
 
+create table friend(
+	my_id			int			not null,
+	friend_id		int			not null,
+	status			int			default 0 not null,  -- 0=요청, 1=수락, 2=거절, 3=차단
+	create_date		timestamp	default now(),
+	primary key(my_id, friend_id),
+    foreign key(my_id) references member(id),
+    foreign key(friend_id) references member(id)
+);
+
 create table chatroom(
 	room_id			int				auto_increment	primary key,
     room_type		int				not null,

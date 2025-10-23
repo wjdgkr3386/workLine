@@ -5,20 +5,31 @@
 	
 	<select id="getMyInfo" parameterType="java.util.String" resultType="java.util.HashMap">
 		select
-			id as "ID",
-			mid as "MID",
-			pwd as "PWD",
-			username as "USERNAME",
-			phone as "PHONE",
-			email as "EMAIL",
-			nickname as "NICKNAME",
-			img as "IMG",
-			is_deleted as "IS_DELETED",
-			created_date as "CREATED_DATE"
+			id 				as "ID",
+			mid 			as "MID",
+			pwd 			as "PWD",
+			username 		as "USERNAME",
+			phone 			as "PHONE",
+			email 			as "EMAIL",
+			nickname 		as "NICKNAME",
+			img 			as "IMG",
+			is_deleted 		as "IS_DELETED",
+			created_date 	as "CREATED_DATE"
 		from
 			member
 		where
 			mid=#{mid}
-		
+	</select>
+	
+	<select id="getFriend" parameterType="java.util.String" resultType="java.util.HashMap">
+		select
+			my_id 		as "MY_ID",
+			friend_id 	as "FRIEND_ID",
+			status 		as "STATUS",		<!--0=요청, 1=수락, 2=거절, 3=차단-->
+			create_date as "CREATE_DATE"
+		from
+			friend
+		where
+			my_id=#{mid}
 	</select>
 </mapper>

@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.example.demo.login.LoginDAO;
 
 public class WorkLineController {
 
@@ -27,22 +26,22 @@ public class WorkLineController {
 	
 	//기본 주소ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @RequestMapping(value = "/workLine")
-    public ModelAndView workLine(
-    		HttpServletRequest request
+    public String workLine(
+    		HttpServletRequest request,
+    		Model model
     	) {
 		System.out.println("WorkLineController -- ModelAndView workLine");
 		
-        ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         String mid = (String) session.getAttribute("mid");
 
         Map<String,Object> myInfoMap = workLineDAO.getMyInfo(mid);
         List<Map<String,Object>> friendMapList = workLineDAO.getFriend(mid);
-        mav.setViewName("workLine");
-        mav.addObject("myInfoMap", myInfoMap);
-        mav.addObject("friendMapList", friendMapList);
+        
+        model.addAttribute("myInfoMap", myInfoMap);
+        model.addAttribute("friendMapList", friendMapList);
 
-        return mav;
+        return "workLine";
     }
     
 }

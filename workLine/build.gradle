@@ -108,7 +108,7 @@ dependencies {
 	// [시큐리티 로그인 관련 태그 API]를 다운로드 하는 설정하기.
 	// 수입 후 /시큐리티 로그인 관련 설정을 해야 정상적인 URL 접근이 가능하다
 	//--------------------------------------------------------
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	//implementation 'org.springframework.security:spring-security-taglibs'
 	//testImplementation 'org.springframework.security:spring-security-test'
 
@@ -119,7 +119,6 @@ dependencies {
 	//        어플리케이션 개발시 유용한 기능들을 포함하고 있는 Spring Boot 모듈이다.
 	//--------------------------------------------------------
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	
 }
 
 test {

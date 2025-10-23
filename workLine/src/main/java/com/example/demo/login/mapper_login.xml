@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.LoginDAO">
+<mapper namespace="com.example.demo.login.LoginDAO">
 	
-	<select id="checkMid" parameterType="com.example.demo.WorkLineDTO" resultType="int">
+	<select id="checkMid" parameterType="com.example.demo.login.LoginDTO" resultType="int">
 		select count(mid) from member where mid=#{mid}
 	</select>
 
-	<select id="login" parameterType="com.example.demo.WorkLineDTO" resultType="int">
-		select count(*) from member where mid=#{mid} and pwd=#{pwd}
+	<select id="getPwd" parameterType="com.example.demo.login.LoginDTO" resultType="String">
+		select pwd as "PWD" from member where mid=#{mid}
 	</select>
 
-	<insert id="insertMember" parameterType="com.example.demo.WorkLineDTO">
+	<insert id="insertMember" parameterType="com.example.demo.login.LoginDTO">
 		insert into member (
-			uuid,
-			name,
 			mid,
 			pwd,
-			phone
+			username,
+			phone,
+			email
 		) values (
-			#{uuid},
-			#{name},
 			#{mid},
 			#{pwd},
-			concat(#{phone1},#{phone2},#{phone3})
+			#{username},
+			concat(#{phone1},#{phone2},#{phone3}),
+			#{email}
 		)
 	</insert>
 

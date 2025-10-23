@@ -10,5 +10,5 @@ public interface LoginDAO {
 	int insertMember(LoginDTO workLineDTO);
 	
 	//로그인
-	int login(LoginDTO loginDTO);
+	String getPwd(LoginDTO loginDTO);
 }

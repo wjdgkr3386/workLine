@@ -16,6 +16,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	
 	public int insertMember(LoginDTO loginDTO) {
+		System.out.println("LoginServiceImpl -- insertMember");
 		if(loginDAO.checkMid(loginDTO)>0) return ALREADY_EXISTS;
 		return loginDAO.insertMember(loginDTO);
 	}

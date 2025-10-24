@@ -14,15 +14,16 @@ public class SessionInterceptor   implements HandlerInterceptor  {
             , HttpServletResponse response 
             , Object handler
     ) throws Exception {
+        System.out.println("SessionInterceptor -- preHandle -- " + request.getRequestURI());
         
         HttpSession session = request.getSession();   
         String mid = (String)session.getAttribute("mid");    
 
-        if(mid==null) {    
+        if(mid==null) {
             response.sendRedirect( "/login" );
             return false;
         }
-        else{ 
+        else{
             return true;
         }
     }

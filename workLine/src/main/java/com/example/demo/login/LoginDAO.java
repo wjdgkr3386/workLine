@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface LoginDAO {
 
 	//회원가입
-	int checkMid(LoginDTO workLineDTO);
-	int insertMember(LoginDTO workLineDTO);
+	int checkMid(LoginDTO loginDTO);
+	int insertMember(LoginDTO loginDTO);
 	
 	//로그인
 	String getPwd(LoginDTO loginDTO);

@@ -18,7 +18,8 @@ public class LoginProcController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	final int SUCCESS = 1;
-	final int FAIL_LOGIN = -1;
+	final int FAIL = -1;
+	final int DUPLICATE_MID = -2;
 	final int NOT_MID = -3;
 	final int ERROR = -99;
 	
@@ -31,6 +32,7 @@ public class LoginProcController {
 		
 		int cnt=0;
 		try {
+			if(loginDAO.checkMid(loginDTO)>0) { cnt = DUPLICATE_MID; }
 			//비밀번호 암호화
 			loginDTO.setPwd(encoder.encode(loginDTO.getPwd()));
 			cnt = loginService.insertMember(loginDTO);
@@ -62,7 +64,7 @@ public class LoginProcController {
 			cnt = SUCCESS;
 			session.setAttribute("mid", loginDTO.getMid());
 		}else {
-			cnt = FAIL_LOGIN;
+			cnt = FAIL;
 		}
 		
 		return cnt;

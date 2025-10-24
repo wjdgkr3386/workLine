@@ -53,13 +53,14 @@
 $(function(){init();});
 function init(){
 	//입력 필드 가져오기
-	$("[name='name']").val("김정학");
+	$("[name='username']").val("김정학");
 	$("[name='mid']").val("wjdgkr3386");
 	$("[name='pwd']").val("kjh3765!");
 	$("[name='pwdCheck']").val("kjh3765!");
 	$("[name='phone1']").val("010");
 	$("[name='phone2']").val("4614");
 	$("[name='phone3']").val("3386");
+	$("[name='email']").val("wjdgkr3386@naver.com");
 }
 
 
@@ -75,13 +76,15 @@ function signup(){
 	     "post",
 	     formObj,
 	     function (cnt) {
-	    	 if(cnt==1){
-	    		 location.replace("/login");
-	    	 }else if(cnt==-1){
-	    		 alert("이미 있는 아이디입니다.");
-	    	 }else{
-	    		 alert("오류가 생겼습니다.\n관리자에게 문의주세요.");
-	    	 }
+			if(cnt==1){
+				location.replace("/login");
+			} else if(cnt==-1){
+				alert("실패");
+			}else if(cnt==-2){
+				alert("이미 있는 아이디입니다.");
+			}else{
+				alert("오류가 생겼습니다.\n관리자에게 문의주세요.");
+			}
 	     }
 	);
 }
@@ -91,19 +94,20 @@ function isValid() {
 	var isValid = true;
 	
 	//입력 필드 가져오기
-	var name = $("[name='name']").val().trim();
+	var username = $("[name='username']").val().trim();
 	var mid = $("[name='mid']").val().trim();
 	var pwd = $("[name='pwd']").val().trim();
 	var pwdCheck = $("[name='pwdCheck']").val().trim();
 	var phone1 = $("[name='phone1']").val().trim();
 	var phone2 = $("[name='phone2']").val().trim();
 	var phone3 = $("[name='phone3']").val().trim();
+	var email = $("[name='email']").val().trim();
 	
-    if (name === "") {
+    if (username === "") {
         alert("이름을 입력하세요.");
         isValid = false;
         return isValid;
-    } else if (!/^[가-힣]+$/.test(name)) { // 한글만 허용
+    } else if (!/^[가-힣]+$/.test(username)) { // 한글만 허용
         alert("이름은 한글만 입력할 수 있습니다.");
         isValid = false;
         return isValid;
@@ -144,6 +148,15 @@ function isValid() {
         isValid = false;
         return isValid;
     }
+	
+	if (email === "") {
+	    alert("이메일을 입력하세요.");
+	    isValid = false;
+	    //첫 문자는 영어, @ 나오기 전까지는 영어+숫자 4~12자리, @ 하나, 영어+숫자 하나 이상, . 하나 , 소문자 2~4자리 
+	} else if (!/^([a-zA-Z][a-zA-Z0-9]{4,16})@([a-z0-9]+\.)[a-z]{2,4}$/.test(email)) { // 이메일 형식
+	    alert("유효한 이메일 주소를 입력하세요.");
+	    isValid = false;
+	}
     
     return isValid;
 }

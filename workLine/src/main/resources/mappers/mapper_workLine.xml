@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.WorkLineDAO">
+<mapper namespace="com.example.demo.workLine.WorkLineDAO">
 	
-	<select id="getMyInfo" parameterType="java.util.String" resultType="java.util.HashMap">
+	<select id="getMyInfo" parameterType="String" resultType="java.util.HashMap">
 		select
 			id 				as "ID",
 			mid 			as "MID",
@@ -21,7 +21,7 @@
 			mid=#{mid}
 	</select>
 	
-	<select id="getFriend" parameterType="java.util.String" resultType="java.util.HashMap">
+	<select id="getFriend" parameterType="String" resultType="java.util.HashMap">
 		select
 			my_id 		as "MY_ID",
 			friend_id 	as "FRIEND_ID",

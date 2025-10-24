@@ -18,6 +18,10 @@ public class MyConfig implements WebMvcConfigurer{
                 ,"/signupProc"
                 ,"/js/**"
                 ,"/css/**"
+                ,"/img/**"
+                ,"/error"
+                ,"/.well-known/**"
+                ,"/favicon.ico"
         );
     }
 }

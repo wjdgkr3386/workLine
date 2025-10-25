@@ -21,7 +21,7 @@ public class WorkLineController {
 	//기본 주소로 리디렉트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	@GetMapping(value = "/")
 	public String workLine() {
-		System.out.println("WorkLineController -- String workLine");
+		System.out.println("WorkLineController -- /");
 		return "redirect:/workLine";
 	}
 	
@@ -31,7 +31,7 @@ public class WorkLineController {
     		HttpServletRequest request,
     		Model model
     	) {
-		System.out.println("WorkLineController -- ModelAndView workLine");
+		System.out.println("WorkLineController -- workLine");
 		
         HttpSession session = request.getSession();
         String mid = (String) session.getAttribute("mid");

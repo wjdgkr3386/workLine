@@ -42,12 +42,12 @@
 		list-style-type: none;
 		margin:0;
 		padding:0;
-		border: 1px solid black;
 	}
 	.friend-ul .friend-li{
 		height: 50px;
 		display: flex;
 		padding: 4px 0;
+		border: 1px solid black;
 	}
 	.friend-li .img{
 		height: 46px;
@@ -104,15 +104,63 @@
 	}
 	.chat-area{
 		flex-grow: 1;
+		overflow-y: auto;
+		padding: 20px;
 	}
 	.chat-input{
 		min-height: 66px;
 		max-height: 250px;
 		overflow-y: auto;
 		padding: 5px;
+		box-sizing: border-box;
 		white-space: pre-wrap;      /* 줄바꿈 허용 + 공백 유지 */
 		word-wrap: break-word;      /* 긴 단어가 박스 밖으로 못 나가게 */
 		word-break: break-word;     /* 한국어나 영어 긴 문자열 줄바꿈 */
+	}
+	.chat-container .chat-ul{
+		list-style-type: none;
+		margin:0;
+		padding:0;
+	}
+	.chat-ul .chat-li{
+		border: 1px solid black;
+		display: flex;
+		min-height: 50px;
+		max-width: 80%;
+	}
+	.chat-li .img-in-div{
+		min-height: 100%;
+		max-height: 100%;
+		width: 50px;
+	}
+	.img-in-div .img{
+		width: 46px;
+		height: 46px;
+		border-radius: 8px;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word;
+	}
+	.chat-li .chat-info{
+		flex-grow: 1;
+	}
+	.chat-info .name{
+		margin: 0 0 0 5px;
+		font-weight: 700;
+	}
+	.chat-info .content{
+		display: flex;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word;
+		margin: 0 0 0 5px;
+		padding: 5px;
+	}
+	.chat-li .my-chat{
+		flex-direction: row-reverse;
+	}
+	.my-chat .content{
+		flex-direction: row-reverse;
 	}
 </style>
 </head>
@@ -139,7 +187,7 @@
 					</li>
 				</ul>
 				
-			</div><!-- friend-container -->
+			</div>
 			
 			<div class="my-info-container">
 				<img src="/img/user_profile.png" class="img">
@@ -155,6 +203,27 @@
 		
 		<div class="chat-container">
 			<div class="chat-area">
+			
+				<ul class="chat-ul">
+				
+					<li class="chat-li you-chat">
+						<div class="img-in-div">
+							<img src="/img/user_profile.png" class="img">
+						</div>
+						<div class="chat-info">
+							<div class="name">김정학</div>
+							<div class="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
+						</div>
+					</li>
+					
+					
+					
+					<li class="chat-li my-chat">
+						<div class="chat-info">
+							<div class="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
+						</div>
+					</li>
+				</ul>
 				
 			</div>
 			<div class="chat-input" contenteditable="true" spellcheck="false"></div>
@@ -170,5 +239,8 @@
 		thisObj.siblings().removeClass("selected");
 		thisObj.addClass("selected");
 	});
+	
+	/* setInterval(function(){location.reload();} , 5 * 1000 );
+	 */
 </script>
 </html>

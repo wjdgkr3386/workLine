@@ -1,0 +1,10 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
+div{
+	border: 1px solid black;
+	box-sizing: border-box;
+}

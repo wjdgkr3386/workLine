@@ -16,10 +16,12 @@
 		flex-direction: column;
 		min-width: 250px;
 		max-width: 250px;
+		border: 1px solid black;
 	}
 	.button-container{
 		display: flex;
-		height: 50px;
+		min-height: 50px;
+		max-height: 50px;
 	}
 	.button-container > button{
 		margin: 0;
@@ -37,6 +39,7 @@
 	}
 	.friend-container{
 		flex-grow: 1;
+		overflow-y: auto;
 	}
 	.friend-container .friend-ul{
 		list-style-type: none;
@@ -47,7 +50,9 @@
 		height: 50px;
 		display: flex;
 		padding: 4px 0;
-		border: 1px solid black;
+	}
+	.friend-ul .friend-li:hover{
+		background-color: #ECF4E8;
 	}
 	.friend-li .img{
 		height: 46px;
@@ -73,6 +78,7 @@
 	.my-info-container{
 		height: 66px;
 		display: flex;
+		border-top: 1px solid black;
 	}
 	.my-info-container .img{
 		height: 62px;
@@ -103,64 +109,94 @@
 		flex-direction: column;
 	}
 	.chat-area{
+		display: flex;
+		flex-direction: column;
 		flex-grow: 1;
 		overflow-y: auto;
 		padding: 20px;
+		border: 1px solid black;
+		border-left: none;
+	}
+	.chat-box{
+		display: flex;
+		max-width: 80%;
+		min-height: 50px;
+		margin-bottom: 10px;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word; 
+	}
+	.img-box{
+		display: flex;
+		height: 100%;
+		width: 50px;
+	}
+	.img-box .img{
+		width: 50px;
+		height: 50px;
+		border-radius: 8px;
+	}
+	.you-chat .chat-info{
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		padding: 0 0 0 5px;
+	}
+	.chat-box.my-chat{
+		align-self: flex-end;
+	}
+	.chat-info .name{
+		height: 25px;
+		margin: 5px 0 0 0;
+		font-weight: 700;
+	}
+	.chat-info .content{
+		flex-grow: 1;
+		border-radius: 8px;
+		background-color: #FFF58A;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		word-break: break-word;
+		padding: 7px;
+	}
+	.my-chat .chat-info{
+		display: flex;
+	}
+	.my-chat .content{
+		flex-direction: row-reverse;
+	}
+	.time{
+		display: flex;
+		flex-direction: column-reverse;
+		min-width: 40px;
+		user-select: none;
+		font-size: 12px;
+	}
+	.chat-input-area{
+		display: flex;
+		min-height: 66px;
 	}
 	.chat-input{
-		min-height: 66px;
+		min-height: 100%;
 		max-height: 250px;
 		overflow-y: auto;
+		flex-grow: 1;
 		padding: 5px;
-		box-sizing: border-box;
 		white-space: pre-wrap;      /* 줄바꿈 허용 + 공백 유지 */
 		word-wrap: break-word;      /* 긴 단어가 박스 밖으로 못 나가게 */
 		word-break: break-word;     /* 한국어나 영어 긴 문자열 줄바꿈 */
 	}
-	.chat-container .chat-ul{
-		list-style-type: none;
-		margin:0;
-		padding:0;
+	.chat-input:empty:before {
+		content: attr(placeholder);
+		color: #aaa;
 	}
-	.chat-ul .chat-li{
-		border: 1px solid black;
-		display: flex;
-		min-height: 50px;
-		max-width: 80%;
+	.chat-input-area .btn{
+		min-width: 90px;
+		font-size: 16px;
+		border-radius: 12px;
 	}
-	.chat-li .img-in-div{
-		min-height: 100%;
-		max-height: 100%;
-		width: 50px;
-	}
-	.img-in-div .img{
-		width: 46px;
-		height: 46px;
-		border-radius: 8px;
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		word-break: break-word;
-	}
-	.chat-li .chat-info{
-		flex-grow: 1;
-	}
-	.chat-info .name{
-		margin: 0 0 0 5px;
-		font-weight: 700;
-	}
-	.chat-info .content{
-		display: flex;
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		word-break: break-word;
-		margin: 0 0 0 5px;
-		padding: 5px;
-	}
-	.chat-li .my-chat{
-		flex-direction: row-reverse;
-	}
-	.my-chat .content{
-		flex-direction: row-reverse;
+	.chat-input-area .btn:hover{
+		cursor: pointer;
 	}
 </style>
 </head>
@@ -204,29 +240,29 @@
 		<div class="chat-container">
 			<div class="chat-area">
 			
-				<ul class="chat-ul">
-				
-					<li class="chat-li you-chat">
-						<div class="img-in-div">
-							<img src="/img/user_profile.png" class="img">
-						</div>
-						<div class="chat-info">
-							<div class="name">김정학</div>
-							<div class="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
-						</div>
-					</li>
-					
-					
-					
-					<li class="chat-li my-chat">
-						<div class="chat-info">
-							<div class="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
-						</div>
-					</li>
-				</ul>
-				
+				<div class="chat-box you-chat">
+					<div class="img-box">
+						<img src="/img/user_profile.png" class="img">
+					</div>
+					<div class="chat-info">
+						<div class="name">김정학</div>
+						<div class="content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>						
+					</div>
+					<span class="time">24:58</span>
+				</div>
+			
+				<div class="chat-box my-chat">
+					<span class="time">23:11</span>
+					<div class="chat-info">
+						<div class="content">contentcontentcontntcontentcntentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
+					</div>
+				</div>
+
 			</div>
-			<div class="chat-input" contenteditable="true" spellcheck="false"></div>
+			<div class="chat-input-area">
+				<div class="chat-input" contenteditable="true" spellcheck="false" placeholder="메시지를 입력헤주세요."></div>
+				<button type="button" class="btn">전송</button>
+			</div>
 		</div>
 		
 		
@@ -240,7 +276,6 @@
 		thisObj.addClass("selected");
 	});
 	
-	/* setInterval(function(){location.reload();} , 5 * 1000 );
-	 */
+	 
 </script>
 </html>

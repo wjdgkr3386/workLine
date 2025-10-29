@@ -5,6 +5,14 @@ body{
 }
 
 div{
-	border: 1px solid black;
 	box-sizing: border-box;
+}
+
+button{
+	border: none;
+	user-select: none;
+}
+
+img{
+	user-select: none;
 }

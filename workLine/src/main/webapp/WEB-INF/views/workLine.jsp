@@ -271,13 +271,41 @@
 	</div>
 </body>
 <script>
+	
+	let socket;
+    function socketOpen(){
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            document.getElementById('output').innerHTML += '<p>WebSocket is already connected.</p>';
+            return;
+        }
+        // 웹소켓 연결 설정
+        socket = new WebSocket('ws://localhost:8081/ws');
+        
+        // 웹소켓 열렸을 때 호출되는 함수
+        socket.onopen = function(event) {
+            document.getElementById('output').innerHTML += '<p>Connected to WebSocket</p>';
+        };
+        
+        // 서버로부터 메시지를 받을 때 호출되는 함수
+        socket.onmessage = function(event) {
+            document.getElementById('output').innerHTML += '<p>Message from server: ' + event.data + '</p>';
+        };
+        
+        // 웹소켓이 닫혔을 때 호출되는 함수
+        socket.onclose = function(event) {
+            document.getElementById('output').innerHTML += '<p>WebSocket is closed.</p>';
+        };
+        
+        // 오류가 발생했을 때 호출되는 함수
+        socket.onerror = function(error) {
+            document.getElementById('output').innerHTML += '<p>WebSocket error: ' + error + '</p>';
+        };
+    }
 
 	$(".button-container .btn").click(function(){
 		const thisObj = $(this);
 		thisObj.siblings().removeClass("selected");
 		thisObj.addClass("selected");
 	});
-	
-	 
 </script>
 </html>

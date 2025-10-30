@@ -120,6 +120,11 @@ dependencies {
 	//        어플리케이션 개발시 유용한 기능들을 포함하고 있는 Spring Boot 모듈이다.
 	//--------------------------------------------------------
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	//--------------------------------------------------------
+	// 웹소켓
+	//--------------------------------------------------------
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 
 test {

@@ -119,7 +119,7 @@
 	}
 	.chat-box{
 		display: flex;
-		max-width: 80%;
+		max-width: 85%;
 		min-height: 50px;
 		margin-bottom: 10px;
 		white-space: pre-wrap;
@@ -260,7 +260,9 @@
 
 			</div>
 			<div class="chat-input-area">
-				<div class="chat-input" contenteditable="true" spellcheck="false" placeholder="메시지를 입력헤주세요."></div>
+				<form action="/insertContent">
+					<div class="chat-input" name="content" contenteditable="true" spellcheck="false" placeholder="메시지를 입력헤주세요."></div>
+				</form>
 				<button type="button" class="btn">전송</button>
 			</div>
 		</div>
